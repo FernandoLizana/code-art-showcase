@@ -1,0 +1,274 @@
+:root {
+  --bg: #100e0c;
+  --bone: #ebe4d8;
+  --dim: #9a9186;
+  --faint: #6d665e;
+  --line: rgba(235, 228, 216, 0.16);
+  --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --pixel: #00ffcc;
+  --pixel-hot: #ff2f8e;
+  --star: #c4b6ff;
+  --gold: #8b7340;
+  --voice: #f4ece4;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--bone);
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  line-height: 1.45;
+}
+
+.mast {
+  padding: 4.5rem 6vw 2.5rem;
+  max-width: 46rem;
+}
+
+.eyebrow {
+  margin: 0 0 1.1rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+h1 {
+  margin: 0;
+  font-weight: 500;
+  font-size: clamp(3rem, 7vw, 5.4rem);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+}
+
+.lede {
+  margin: 1.4rem 0 0;
+  max-width: 38rem;
+  color: var(--dim);
+  font-size: 1.25rem;
+}
+
+.piece {
+  display: grid;
+  grid-template-columns: 4.2rem minmax(0, 1fr) minmax(16rem, 1.05fr);
+  gap: 1.5rem 2rem;
+  align-items: center;
+  padding: 2.4rem 6vw;
+  border-top: 1px solid var(--line);
+}
+
+.copy,
+.well,
+dl,
+dl div {
+  min-width: 0;
+}
+
+.index {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  color: var(--faint);
+}
+
+h2 {
+  margin: 0;
+  font-weight: 500;
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.02em;
+}
+
+.line {
+  margin: 0.45rem 0 0;
+  font-style: italic;
+  color: var(--bone);
+}
+
+.about {
+  margin: 0.8rem 0 0;
+  max-width: 36rem;
+  color: var(--dim);
+  font-size: 1.15rem;
+}
+
+dl {
+  display: grid;
+  gap: 0.35rem;
+  margin: 1.2rem 0 0;
+}
+
+dl div {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.01em;
+}
+
+dt {
+  color: var(--faint);
+}
+
+dd {
+  margin: 0;
+  color: var(--bone);
+  overflow-wrap: anywhere;
+}
+
+.hint {
+  color: var(--faint);
+}
+
+.well {
+  position: relative;
+  min-height: 220px;
+  height: 100%;
+  border: 1px solid var(--line);
+  background: #07070d;
+  overflow: hidden;
+}
+
+.well canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+}
+
+.well-caption {
+  position: absolute;
+  left: 0.8rem;
+  bottom: 0.65rem;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(235, 228, 216, 0.55);
+}
+
+.piece--pixel .well {
+  background: #070712;
+  box-shadow: inset 0 0 40px rgba(0, 255, 204, 0.05);
+}
+
+.piece--star .well {
+  background: #050510;
+  box-shadow: inset 0 0 50px rgba(124, 92, 255, 0.12);
+}
+
+.well--voice,
+.well--arcana {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 240px;
+  padding: 2rem 1.6rem 2.4rem;
+}
+
+.well--voice {
+  background: #050506;
+}
+
+.voice-line {
+  margin: 0;
+  max-width: 16ch;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  line-height: 1.05;
+  color: var(--voice);
+}
+
+.voice-note {
+  margin: 1.2rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  color: #8a3a3a;
+}
+
+.well--arcana {
+  background: #0c0b0a;
+  align-items: flex-start;
+}
+
+.arcana-text {
+  margin: 0;
+  max-width: 16ch;
+  color: #7a756a;
+  font-style: italic;
+  font-size: 1.7rem;
+}
+
+.arcana-enter {
+  margin-top: 1.6rem;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid #3a342c;
+  color: #d4cfc4;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.colophon {
+  padding: 2rem 6vw 3.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.colophon p {
+  margin: 0;
+  max-width: 46rem;
+  color: var(--dim);
+  font-size: 1.05rem;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  color: var(--bone);
+}
+
+@media (max-width: 860px) {
+  .mast,
+  .piece,
+  .colophon {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .piece {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "index"
+      "copy"
+      "well";
+    align-items: start;
+  }
+
+  .index { grid-area: index; }
+  .copy { grid-area: copy; }
+  .well { grid-area: well; min-height: 200px; }
+
+  dl div {
+    grid-template-columns: 4.6rem minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
