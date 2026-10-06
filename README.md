@@ -2,9 +2,9 @@
 
 Catálogo experimental de cuatro piezas. El arte y el desarrollo excéntrico van en la misma superficie: una página que no explica un producto, sino que pone juntas obras hechas con código.
 
-PixelWall y StarWall venden un lugar. yosoy y Arcana dejan que algo te hable. La vitrina no ejecuta esas obras. Muestra una miniatura de cada una, con su frase, su forma y su stack, para que el gesto artístico y el gesto técnico se lean a la vez.
+PixelWall y StarWall venden un lugar. yosoy y Arcana dejan que algo te hable. La portada no ejecuta esas obras: muestra una miniatura de cada una. El código completo de las cuatro vive en `sitios/`.
 
-Este repositorio es portable. No tiene dependencias, no tiene cuentas y no guarda datos. Se copia la carpeta y se abre.
+La portada se abre sin instalar nada. Cada sitio trae su propio arranque, descrito más abajo.
 
 ## Orientación
 
@@ -38,9 +38,9 @@ flowchart LR
 
 ## Qué incluye y qué no
 
-Incluye la página, sus estilos, el script de las miniaturas y un lanzador de un solo comando.
+Incluye la portada y el código fuente de las cuatro piezas: plantillas, estilos, lógica y archivos de ejemplo para configurarlas en local.
 
-No incluye las cuatro obras completas, ni bases de datos, ni paneles, ni pagos, ni variables de entorno. Las fichas describen cada pieza por su nombre público. No hay rutas de disco, credenciales ni archivos de configuración.
+No incluye dependencias descargables (`node_modules`, `venv`), bases de datos, archivos `.env` ni pagos reales. Las marcas de ejemplo son ficticias. Las contraseñas que aparecen como valor por defecto sirven solo para probar el panel en tu máquina: hay que cambiarlas antes de publicar un servidor.
 
 ## Instalación portable
 
@@ -91,12 +91,17 @@ flowchart TD
 
 ```text
 .
-├── index.html     Página: cuatro fichas y un colofón
+├── index.html          Portada: cuatro fichas
 ├── css/vitrina.css
-├── js/vitrina.js  Muro, cielo y rotación de frases
-├── abrir.py       Servidor local y apertura del navegador
-├── abrir.bat      Atajo de Windows
-├── abrir.sh       Atajo de macOS y Linux
+├── js/vitrina.js       Miniaturas del muro, el cielo y las frases
+├── abrir.py            Abre la portada
+├── abrir.bat
+├── abrir.sh
+├── sitios/
+│   ├── pixelwall/      Muro de píxeles (Flask)
+│   ├── starwall/       Galaxia de marcas (Flask)
+│   ├── yosoy/          Canal de ficción (React y Vite)
+│   └── arcana/         Archivo jugable (Next.js y Flask)
 ├── .gitignore
 └── README.md
 ```
@@ -153,7 +158,7 @@ Los recuadros del muro y del cielo son `canvas` con `aria-hidden`, porque el tex
 | PixelWall | Tu competencia ya compró internet. | muro de celdas | Flask, SQLite, canvas | servidor Python |
 | StarWall | Tu marca puede ser una estrella. | galaxia de marcas | Flask, SQLite | servidor Python |
 | yosoy | Un canal ocupado por varias conciencias. | canal de texto | React, Vite | estático |
-| Arcana Obscura | Este archivo no fue construido para ti. | archivo jugable | Flask y Node | servidor Python |
+| Arcana Obscura | Este archivo no fue construido para ti. | archivo jugable | Next.js y Flask | Node, y Python en la variante Flask |
 
 Esos stacks describen las obras, no esta vitrina. Esta vitrina es HTML, CSS y JavaScript sin herramientas de build.
 
@@ -215,9 +220,107 @@ El color de cada obra vive solo dentro de su recuadro: cian y magenta en el muro
 
 El servidor atiende solo en la máquina local. Cerrar la terminal lo detiene.
 
+## Los cuatro programas
+
+```mermaid
+flowchart TB
+  repo[Repositorio]
+  repo --> portada[index.html]
+  repo --> pixel[sitios/pixelwall]
+  repo --> star[sitios/starwall]
+  repo --> voz[sitios/yosoy]
+  repo --> arcana[sitios/arcana]
+  arcana --> next[Next.js en la raíz de arcana]
+  arcana --> flask[flask/]
+```
+
+Cada carpeta se ejecuta por su cuenta. Ninguna llama a las otras.
+
+### PixelWall
+
+Muro donde una marca compra un rectángulo de celdas. El precio sube si la celda ya tuvo dueño. Si la cuota mensual no se paga, el anuncio se apaga.
+
+```sh
+cd sitios/pixelwall
+python -m venv venv
+```
+
+Windows: `venv\Scripts\activate`. macOS o Linux: `source venv/bin/activate`.
+
+```sh
+pip install -r requirements.txt
+copy .env.example .env
+python app.py
+```
+
+En macOS o Linux el ejemplo se copia con `cp .env.example .env`. La app queda en [http://127.0.0.1:5000](http://127.0.0.1:5000). El detalle de rutas, grilla y precio está en `sitios/pixelwall/README.md`.
+
+### StarWall
+
+El mismo gesto de ocupar un lugar, pasado al cielo: estrellas, planetas y constelaciones. Flask y SQLite. Al primer arranque crea `starwall.db` y carga marcas ficticias.
+
+```sh
+cd sitios/starwall
+python -m venv venv
+```
+
+Activa el entorno como en PixelWall y luego:
+
+```sh
+pip install -r requirements.txt
+copy .env.example .env
+python app.py
+```
+
+Queda en [http://127.0.0.1:5000](http://127.0.0.1:5000). Si PixelWall ya usa ese puerto, cierra uno antes de abrir el otro.
+
+| Método | Ruta | Qué hace |
+| --- | --- | --- |
+| GET | `/` | Galaxia pública |
+| GET | `/buy` | Reservar un lugar |
+| GET | `/space/<slug>` | Ficha de una marca |
+| GET, POST | `/api/spaces` | Listar o crear un lugar |
+| GET, POST | `/admin` | Panel local |
+
+`SECRET_KEY` y `ADMIN_PASSWORD` salen del entorno. Si no existen, el código usa un valor de desarrollo. No hay token de pago en el repositorio: Mercado Pago está comentado en `config.py`.
+
+### yosoy
+
+Ficción interactiva. Daat, Bina, Keter y Yesod se turnan un canal. Es un sitio estático después de compilar.
+
+```sh
+cd sitios/yosoy
+npm install
+npm run dev
+```
+
+`npm test` corre Vitest. `npm run build` deja el sitio en `dist/`.
+
+### Arcana Obscura
+
+El juego principal es la aplicación Next.js de `sitios/arcana`. `sitios/arcana/flask` es la misma pieza servida con Flask y un puente hacia el motor Node.
+
+```sh
+cd sitios/arcana
+npm install
+cp .env.example .env
+npm run db:migrate
+npm run dev
+```
+
+Abre [http://127.0.0.1:3000](http://127.0.0.1:3000). En Windows, `copy .env.example .env` sustituye a `cp`. El archivo de ejemplo trae valores vacíos o de relleno. El secreto de sesión real no está en el repositorio: se escribe en `.env`, y `.env` no se versiona.
+
+La variante Flask, desde `sitios/arcana/flask`:
+
+```sh
+python -m venv venv
+```
+
+Activa el entorno, instala `requirements.txt` y ejecuta `python app.py`.
+
 ## Privacidad
 
-En este repositorio no hay tokens, claves, archivos `.env`, correos ni rutas de una máquina concreta. `.gitignore` deja fuera `.env`, `.env.*` y cachés de Python por si más adelante alguien los crea al lado.
+En este repositorio no hay tokens de pago, archivos `.env`, bases con datos reales ni rutas de una máquina concreta. `.gitignore` deja fuera `.env`, `*.db`, `node_modules`, `venv` y cachés. Los correos de las marcas de ejemplo usan dominios ficticios o `example`.
 
 La página no envía formularios, no usa cookies y no llama a un servidor propio. La única petición externa posible es la de las fuentes, y solo si el archivo se abre con red.
 

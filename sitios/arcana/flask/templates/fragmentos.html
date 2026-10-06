@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% set show_nav = true %}
+{% set show_fragmentos = true %}
+{% block content %}
+<div style="padding:5rem 1.5rem 3rem;max-width:36rem;margin:0 auto">
+  <h1 class="terminal" style="text-transform:uppercase;margin-bottom:0.5rem">Fragmentos</h1>
+  <p class="narrative" style="margin-bottom:2rem">Textos que el archivo suelta cuando has mirado demasiado.</p>
+
+  <form method="post" style="margin-bottom:2rem">
+    <input type="hidden" name="action" value="unlock">
+    <input type="text" name="code" class="input" placeholder="Semilla o cifrado (ej. keter, X7NA-...)" style="margin-bottom:0.5rem">
+    <button type="submit" class="btn btn-ghost">Desbloquear</button>
+  </form>
+  {% if unlock_msg %}<p class="msg-success">{{ unlock_msg }}</p>{% endif %}
+  {% if unlock_err %}<p class="msg-error">{{ unlock_err }}</p>{% endif %}
+
+  {% for frag in fragments %}
+  <div class="panel" style="margin-bottom:1rem;text-align:left">
+    <p class="terminal" style="font-size:0.65rem;text-transform:uppercase;margin-bottom:0.5rem">{{ frag.title }}</p>
+    <p class="narrative" style="margin:0">{{ frag.text }}</p>
+  </div>
+  {% else %}
+  <p class="msg-hint">Aún no hay nada legible. Cruza umbrales. Recuerda tus códigos.</p>
+  {% endfor %}
+</div>
+{% endblock %}

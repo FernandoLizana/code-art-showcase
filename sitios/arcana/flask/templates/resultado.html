@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="center fade-in">
+  <div class="panel" style="text-align:left">
+    <p class="terminal" style="text-transform:uppercase;margin-bottom:1.5rem">Resultado</p>
+    <p style="color:var(--text-faint);font-size:0.85rem">Arquetipo</p>
+    <p style="font-size:1.4rem;margin:0.25rem 0 1.5rem">{{ profile.primaryArchetype }}</p>
+    <p style="color:var(--text-faint);font-size:0.85rem">Carta</p>
+    <p style="margin:0.25rem 0 1.5rem">{{ profile.tarotCard }}</p>
+    <p style="color:var(--text-faint);font-size:0.85rem">Nombre</p>
+    <p class="terminal">{{ profile.borrowedName }}</p>
+    {% if arcane_codes %}
+    <div style="margin-top:2rem;border-top:1px solid var(--border-subtle);padding-top:1.5rem">
+      {% for c in arcane_codes %}
+      <p class="terminal" style="color:var(--accent-gold);font-size:0.75rem;margin:0.35rem 0;letter-spacing:0.1em">{{ c.cipher }}</p>
+      {% endfor %}
+    </div>
+    {% endif %}
+    <p style="margin-top:2rem"><a href="{{ url_for('umbral') }}" class="btn">Continuar</a></p>
+  </div>
+</div>
+{% endblock %}

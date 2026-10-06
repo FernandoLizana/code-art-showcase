@@ -1,7 +1,15 @@
 .DS_Store
 Thumbs.db
 desktop.ini
-*.env
-.env.*
+.env
+.env.local
+.env.*.local
 __pycache__/
 *.pyc
+*.db
+node_modules/
+venv/
+.venv/
+.next/
+dist/
+test-results/

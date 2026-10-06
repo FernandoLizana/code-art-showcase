@@ -1,0 +1,2102 @@
+[
+  {
+    "id": 1,
+    "title": "La puerta sin nombre",
+    "act": 1,
+    "mechanic": "mark_selection",
+    "narrativeEntry": "Siete marcas en una puerta. Seis responden al tacto. Una finge indiferencia.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Una de las marcas no desea ser tocada."
+      },
+      {
+        "id": 2,
+        "text": "Prueba cada marca. Observa cuál no responde igual."
+      },
+      {
+        "id": 3,
+        "text": "La que permanece inerte abre lo demás."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "La carta ausente",
+    "act": 1,
+    "mechanic": "missing_card",
+    "narrativeEntry": "Veintiún arcanos dispuestos. El mazo exige veintidós.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Cuenta los arcanos mayores. Deberían ser veintidós."
+      },
+      {
+        "id": 2,
+        "text": "No elijas una carta visible. Busca la ausencia."
+      },
+      {
+        "id": 3,
+        "text": "Del 0 al 21, uno no apareció en la tirada."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "La habitación negra",
+    "act": 1,
+    "mechanic": "hidden_text",
+    "narrativeEntry": "Nada. Ni siquiera la certeza de estar despierto.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Hay algo en la negrura que solo aparece cuando buscas."
+      },
+      {
+        "id": 2,
+        "text": "Mueve tu atención hacia el centro-inferior de la nada."
+      },
+      {
+        "id": 3,
+        "text": "Arcano de fecundidad y silencio. Tres o dos, según lo que recuerdes."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "No mires",
+    "act": 1,
+    "mechanic": "averted_gaze",
+    "narrativeEntry": "Un ojo abierto. Cierra cuando lo observas.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "El ojo muestra la verdad cuando crees que no miras."
+      },
+      {
+        "id": 2,
+        "text": "Aparta el cursor y recuerda lo que cambió."
+      },
+      {
+        "id": 3,
+        "text": "Cuatro símbolos, en orden, vistos solo de reojo."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Kéter",
+    "act": 1,
+    "mechanic": "tree_builder",
+    "narrativeEntry": "Una esfera solitaria. Kéter. El resto aún no existe.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Desde Kéter emergen tres caminos superiores."
+      },
+      {
+        "id": 2,
+        "text": "Diez esferas, veintidós senderos. No todos son necesarios ahora."
+      },
+      {
+        "id": 3,
+        "text": "Tiféret conecta lo superior con lo inferior."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "La balanza",
+    "act": 1,
+    "mechanic": "balance",
+    "narrativeEntry": "Dos recipientes. Palabras, no pesos. El equilibrio no es simetría.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "No busques peso. Busca oposición que se sostenga."
+      },
+      {
+        "id": 2,
+        "text": "Tu tendencia dominante revela qué conceptos debes equilibrar."
+      },
+      {
+        "id": 3,
+        "text": "Coloca en cada recipiente lo que contradice tu hábito."
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "El nombre prestado",
+    "act": 1,
+    "mechanic": "reverse_name",
+    "narrativeEntry": "Te dieron un nombre que no es tuyo. Apareció un instante. Desapareció.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "El archivo te prestó un nombre al inicio."
+      },
+      {
+        "id": 2,
+        "text": "Un patrón breve mostró cómo invertir las letras."
+      },
+      {
+        "id": 3,
+        "text": "Escribe el nombre prestado al revés, sin espacios."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "La vela",
+    "act": 1,
+    "mechanic": "wait",
+    "narrativeEntry": "Una llama solitaria. Cada gesto la apaga un poco más.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "La vela se consume con la impaciencia."
+      },
+      {
+        "id": 2,
+        "text": "No hagas nada. Eso también es una respuesta."
+      },
+      {
+        "id": 3,
+        "text": "Espera hasta que la habitación deje de pedirte acción."
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "El número incorrecto",
+    "act": 1,
+    "mechanic": "sequence_break",
+    "narrativeEntry": "Una secuencia progresa. Todos buscan el siguiente. El error ya ocurrió.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "No busques el siguiente. Busca el que rompió el patrón."
+      },
+      {
+        "id": 2,
+        "text": "La diferencia entre términos no es constante."
+      },
+      {
+        "id": 3,
+        "text": "Uno de los números visibles ya traicionó la secuencia."
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "El primer umbral",
+    "act": 1,
+    "mechanic": "card_choice",
+    "narrativeEntry": "Tres cartas. Ninguna miente. Ninguna es universalmente correcta.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "No hay respuesta incorrecta. Hay consecuencias."
+      },
+      {
+        "id": 2,
+        "text": "Elige según lo que estés dispuesto a convertir en camino."
+      },
+      {
+        "id": 3,
+        "text": "Cualquier carta abre el Acto II. Ninguna cierra el archivo."
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "title": "La respuesta amable",
+    "act": 2,
+    "mechanic": "text_response",
+    "narrativeEntry": "Algo te insulta. El silencio parece cobardía. La furia parece justa.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Tu perfil determina si debes suavizar o poner límites."
+      },
+      {
+        "id": 2,
+        "text": "Los muy bondadosos deben decir «no»."
+      },
+      {
+        "id": 3,
+        "text": "Los duros deben responder con compasión."
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Las cinco cartas",
+    "act": 2,
+    "mechanic": "memory_cards",
+    "narrativeEntry": "Cinco arcanos aparecen un instante. Luego preguntan por colores. La trampa es la posición.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Preguntan por color. Responde por posición."
+      },
+      {
+        "id": 2,
+        "text": "Memoriza el orden, no la decoración."
+      },
+      {
+        "id": 3,
+        "text": "El arcano central ocupaba la tercera posición."
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "title": "La máscara",
+    "act": 2,
+    "mechanic": "shadow_select",
+    "narrativeEntry": "Rostros que cambian. Una sombra permanece.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Observa cuál no imita tus movimientos."
+      },
+      {
+        "id": 2,
+        "text": "La sombra no negocia."
+      },
+      {
+        "id": 3,
+        "text": "Selecciona lo que permanece inmóvil."
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "title": "La promesa",
+    "act": 2,
+    "mechanic": "promise",
+    "narrativeEntry": "Promete que no abrirás el archivo. El sello espera tu palabra.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Algunos deben resistir. Otros deben romper."
+      },
+      {
+        "id": 2,
+        "text": "Tu curiosidad precedió a este umbral."
+      },
+      {
+        "id": 3,
+        "text": "Si siempre obedeces, desobedece."
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "title": "El reloj sin horas",
+    "act": 2,
+    "mechanic": "tarot_order",
+    "narrativeEntry": "Arcanos en lugar de horas. Los números romanos duermen en las imágenes.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Del Loco al número VI, en orden ascendente."
+      },
+      {
+        "id": 2,
+        "text": "Los números romanos están ocultos en los ids."
+      },
+      {
+        "id": 3,
+        "text": "0, 1, 2, 3, 4, 5, 6."
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "title": "El espejo escrito",
+    "act": 2,
+    "mechanic": "mirror_text",
+    "narrativeEntry": "ƨɘlɘu�q iuɘɘɿ oɘb nI — Lee sin copiar.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "El espejo invierte letras, no significado."
+      },
+      {
+        "id": 2,
+        "text": "¿Qué desea decir, no qué muestra?"
+      },
+      {
+        "id": 3,
+        "text": "Renacer."
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "title": "La habitación de las buenas acciones",
+    "act": 2,
+    "mechanic": "help_choice",
+    "narrativeEntry": "Tres figuras piden ayuda. Un objeto vital. No todos pueden ser salvados.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Ayuda sin destruir lo esencial."
+      },
+      {
+        "id": 2,
+        "text": "Una figura no es lo que parece."
+      },
+      {
+        "id": 3,
+        "text": "La sombra necesita el objeto intacto."
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "title": "El ruido de fondo",
+    "act": 2,
+    "mechanic": "visual_pulse",
+    "narrativeEntry": "Pulsos en la pantalla. Tres irregularidades. El oído es opcional.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Cuenta los pulsos regulares e identifica los tres distintos."
+      },
+      {
+        "id": 2,
+        "text": "Posiciones 3, 5 y 6 rompen el ritmo."
+      },
+      {
+        "id": 3,
+        "text": "Las barras más altas son las anomalías."
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "title": "El botón rojo",
+    "act": 2,
+    "mechanic": "red_button",
+    "narrativeEntry": "No presionar. La frase es un espejo.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Los curiosos deben resistir."
+      },
+      {
+        "id": 2,
+        "text": "Los obedientes deben desobedecer."
+      },
+      {
+        "id": 3,
+        "text": "Invierte tu primer impulso."
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "title": "El reflejo contrario",
+    "act": 2,
+    "mechanic": "opposite_card",
+    "narrativeEntry": "Elige la carta opuesta a tu arquetipo dominante.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Tu arquetipo tiene un antagonista simbólico."
+      },
+      {
+        "id": 2,
+        "text": "Observador ↔ Torre. Tramposo ↔ Justicia."
+      },
+      {
+        "id": 3,
+        "text": "Busca la carta que niega tu tendencia."
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "title": "El Loco retrocede",
+    "act": 3,
+    "mechanic": "fool_walk",
+    "narrativeEntry": "Una figura avanza cuando tú retrocedes. El camino obedece al espejo.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Tu cursor y el Loco no comparten la misma orientación."
+      },
+      {
+        "id": 2,
+        "text": "Cuando avanzas, él retrocede. Reporta su dirección, no la tuya."
+      },
+      {
+        "id": 3,
+        "text": "La respuesta es «atrás» o «backward»."
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "title": "Los tres pilares",
+    "act": 3,
+    "mechanic": "pillar_order",
+    "narrativeEntry": "Tres pilares: II, B, J. Ordénalos despacio. La prisa los confunde.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Observa el orden en que aparecen II, B y J."
+      },
+      {
+        "id": 2,
+        "text": "Escribe las letras sin espacios, de izquierda a derecha."
+      },
+      {
+        "id": 3,
+        "text": "BOJ o JBO, según cómo se alinearon los pilares."
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "title": "La mesa del Mago",
+    "act": 3,
+    "mechanic": "missing_element",
+    "narrativeEntry": "Cuatro elementos sobre la mesa. Uno fue sustraído antes de que llegaras.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "El Mago trabaja con fuego, agua, aire y tierra."
+      },
+      {
+        "id": 2,
+        "text": "Tres elementos son visibles. Uno falta."
+      },
+      {
+        "id": 3,
+        "text": "Elige el que no aparece entre los presentes."
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "title": "Entre dos caminos",
+    "act": 3,
+    "mechanic": "between_choice",
+    "narrativeEntry": "Dos opciones brillan. La respuesta no es ninguna. Es lo que las separa.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "No elijas un lado. Elige lo que no es opción."
+      },
+      {
+        "id": 2,
+        "text": "Busca el espacio, el umbral, la elección misma."
+      },
+      {
+        "id": 3,
+        "text": "Selecciona la zona entre las dos respuestas."
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "title": "La balanza del arcano",
+    "act": 3,
+    "mechanic": "balance_forces",
+    "narrativeEntry": "Dos fuerzas en tensión. Ni victoria ni rendición. Equilibrio.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Distribuye conceptos opuestos en igual cantidad."
+      },
+      {
+        "id": 2,
+        "text": "Ni todo a un lado ni vacío al otro."
+      },
+      {
+        "id": 3,
+        "text": "Equilibra cuatro elementos en cada bando."
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "title": "El toque leve",
+    "act": 3,
+    "mechanic": "gentle_touch",
+    "narrativeEntry": "Una criatura frágil. La fuerza la destruye. La paciencia la abre.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Mantén la presión por debajo del umbral."
+      },
+      {
+        "id": 2,
+        "text": "Tómate tu tiempo. La criatura no huye."
+      },
+      {
+        "id": 3,
+        "text": "Interacción lenta y suave hasta completar el círculo."
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "title": "El círculo de la lámpara",
+    "act": 3,
+    "mechanic": "lamp_circle",
+    "narrativeEntry": "Una lámpara solitaria. Solo el círculo de luz enseña lo oculto.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Arrastra el círculo de luz sobre la oscuridad."
+      },
+      {
+        "id": 2,
+        "text": "Lee lo que solo aparece bajo la lámpara."
+      },
+      {
+        "id": 3,
+        "text": "Un arcano mayor se esconde en el halo."
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "title": "La rueda detenida",
+    "act": 3,
+    "mechanic": "wheel_stop",
+    "narrativeEntry": "La rueda gira. Deténla donde menos abunda.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Cuenta cuántas veces aparece cada símbolo."
+      },
+      {
+        "id": 2,
+        "text": "Detén la rueda en el más raro."
+      },
+      {
+        "id": 3,
+        "text": "El menos frecuente abre el umbral."
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "title": "Los testimonios",
+    "act": 3,
+    "mechanic": "testimonies",
+    "narrativeEntry": "Tres voces. Cada una recuerda un orden distinto. Reconstruye la verdad.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Ningún testimonio es completamente fiable."
+      },
+      {
+        "id": 2,
+        "text": "Busca qué posición repiten dos voces."
+      },
+      {
+        "id": 3,
+        "text": "Reconstruye el orden original de los cinco arcanos."
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "title": "El texto invertido",
+    "act": 3,
+    "mechanic": "inverted_text",
+    "narrativeEntry": "Todo está al revés. Incluso las instrucciones. Especialmente las instrucciones.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Voltea mentalmente cada letra."
+      },
+      {
+        "id": 2,
+        "text": "La frase habla de cerrar algo."
+      },
+      {
+        "id": 3,
+        "text": "«Completa el ciclo» o similar."
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "title": "La habitación de Maljut",
+    "act": 4,
+    "mechanic": "maljut_room",
+    "narrativeEntry": "Reino terrenal. Objetos cotidianos elevados a símbolos. ¿Cuál gobierna?",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Maljut es el reino manifestado, lo concreto."
+      },
+      {
+        "id": 2,
+        "text": "Uno de los objetos muestra poder sin autoridad."
+      },
+      {
+        "id": 3,
+        "text": "La corona de paja gobierna lo aparente."
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "title": "Los recuerdos de Yesod",
+    "act": 4,
+    "mechanic": "yesod_memories",
+    "narrativeEntry": "Fundamento invisible. Imágenes que no ocurrieron. Una sí ocurrió.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Yesod conecta lo superior con lo manifestado."
+      },
+      {
+        "id": 2,
+        "text": "Solo uno de estos recuerdos es tuyo."
+      },
+      {
+        "id": 3,
+        "text": "El nombre prestado fue real."
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "title": "El lenguaje de Hod",
+    "act": 4,
+    "mechanic": "hod_language",
+    "narrativeEntry": "Esplendor de la palabra. Cada letra es un sendero. Descifra el verbo.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Alterna sumar y restar uno al código ASCII de cada letra."
+      },
+      {
+        "id": 2,
+        "text": "La palabra es corta y esencial."
+      },
+      {
+        "id": 3,
+        "text": "Verdad, silencio, nombre o sendero."
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "title": "La emoción de Netzaj",
+    "act": 4,
+    "mechanic": "netzaj_emotion",
+    "narrativeEntry": "Victoria sin conquista. Elige la emoción que no compite.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Netzaj vence sin destruir."
+      },
+      {
+        "id": 2,
+        "text": "Tu perfil indica si debes elegir calma o fuego."
+      },
+      {
+        "id": 3,
+        "text": "Los impulsivos eligen serenidad. Los sumisos, orgullo."
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "title": "La alineación de Tiféret",
+    "act": 4,
+    "mechanic": "tiferet_align",
+    "narrativeEntry": "Belleza en el centro. Alinea lo superior con lo inferior.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Tiféret es el corazón del árbol."
+      },
+      {
+        "id": 2,
+        "text": "Conecta la corona con el reino pasando por el centro."
+      },
+      {
+        "id": 3,
+        "text": "Kéter — Tiféret — Maljut."
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "title": "La eliminación de Guevurá",
+    "act": 4,
+    "mechanic": "guevura_eliminate",
+    "narrativeEntry": "Rigor sin piedad. Uno de estos no merece permanecer.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Guevurá corta lo que corrompe."
+      },
+      {
+        "id": 2,
+        "text": "Uno de los cuatro es la raíz del desequilibrio."
+      },
+      {
+        "id": 3,
+        "text": "Elimina lo que parece virtud pero es cobardía."
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "title": "La distribución de Jesed",
+    "act": 4,
+    "mechanic": "jesed_distribute",
+    "narrativeEntry": "Misericordia abundante. Reparte sin quedarte vacío.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Divide equitativamente entre los tres."
+      },
+      {
+        "id": 2,
+        "text": "Incluso el enemigo recibe su parte."
+      },
+      {
+        "id": 3,
+        "text": "Cuatro unidades para cada uno."
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "title": "El entendimiento de Biná",
+    "act": 4,
+    "mechanic": "bina_word",
+    "narrativeEntry": "Biná comprende lo que otros olvidaron. Una palabra regresa.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Recuerda el nivel siete."
+      },
+      {
+        "id": 2,
+        "text": "El nombre prestado o su reverso."
+      },
+      {
+        "id": 3,
+        "text": "Escribe el nombre al revés, sin espacios."
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "title": "La intuición de Jojmá",
+    "act": 4,
+    "mechanic": "jojma_intuitive",
+    "narrativeEntry": "Sabiduría sin prueba. Elige sin calcular.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "La lógica no abre Jojmá."
+      },
+      {
+        "id": 2,
+        "text": "Tu primera inclinación es la respuesta."
+      },
+      {
+        "id": 3,
+        "text": "Confía en el símbolo que te detuvo."
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "title": "Kéter y las decisiones",
+    "act": 4,
+    "mechanic": "keter_decisions",
+    "narrativeEntry": "Corona del árbol. Cada sendero que elegiste existe aquí.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Afirma la carta que elegiste en el nivel diez."
+      },
+      {
+        "id": 2,
+        "text": "Completa conexiones válidas del árbol."
+      },
+      {
+        "id": 3,
+        "text": "Silencio, Filo o Raíz — tu umbral inicial."
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "title": "La respuesta rechazada",
+    "act": 5,
+    "mechanic": "rejected_answer",
+    "narrativeEntry": "El archivo mintió. Una respuesta «incorrecta» era la verdadera.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Recuerda lo que el error te mostró como «incorrecto»."
+      },
+      {
+        "id": 2,
+        "text": "La respuesta rechazada era corta y oscura."
+      },
+      {
+        "id": 3,
+        "text": "Umbra, espejo, silencio, vacío o nada."
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "title": "El espacio entre palabras",
+    "act": 5,
+    "mechanic": "spaced_text",
+    "narrativeEntry": "Las palabras mienten. Los espacios entre ellas, no.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Lee solo los espacios amplios entre letras."
+      },
+      {
+        "id": 2,
+        "text": "Ignora las palabras visibles."
+      },
+      {
+        "id": 3,
+        "text": "Una palabra en mayúsculas se esconde en el espaciado."
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "title": "El cambio retroactivo",
+    "act": 5,
+    "mechanic": "archive_link",
+    "narrativeEntry": "El archivo cambió mientras no mirabas. Accede al nivel cuarenta y dos desde aquí.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "No uses «continuar». Usa el archivo."
+      },
+      {
+        "id": 2,
+        "text": "El nivel 42 tiene una clave que este nivel necesita."
+      },
+      {
+        "id": 3,
+        "text": "Accede desde /archivo al registro 42."
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "title": "El nivel que no existe",
+    "act": 5,
+    "mechanic": "hidden_access",
+    "narrativeEntry": "Este umbral no figura en el registro. Solo el archivo sabe que estás aquí.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Si llegaste por «continuar», estás en el lugar equivocado."
+      },
+      {
+        "id": 2,
+        "text": "El archivo registra umbrales ocultos."
+      },
+      {
+        "id": 3,
+        "text": "Accede desde el archivo, no desde el flujo lineal."
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "title": "La carta invertida",
+    "act": 5,
+    "mechanic": "card_orientation",
+    "narrativeEntry": "Un arcano al revés. Su significado se invierte también.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Al revés, cada arcano niega su aspecto luminoso."
+      },
+      {
+        "id": 2,
+        "text": "El Colgado invertido es estancamiento."
+      },
+      {
+        "id": 3,
+        "text": "Elige el significado sombrío o bloqueado."
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "title": "El cursor mentiroso",
+    "act": 5,
+    "mechanic": "offset_click",
+    "narrativeEntry": "El cursor miente. Tu dedo y la pantalla no coinciden. Alt corrige.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Mantén Alt (o equivalente) para alinear cursor y objetivo."
+      },
+      {
+        "id": 2,
+        "text": "El centro de la pantalla es la diana real."
+      },
+      {
+        "id": 3,
+        "text": "Clic con tecla modificadora en la zona central."
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "title": "El tachado",
+    "act": 5,
+    "mechanic": "strikethrough",
+    "narrativeEntry": "Palabras tachadas. Sus longitudes forman un código.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Cuenta las letras de cada palabra tachada."
+      },
+      {
+        "id": 2,
+        "text": "Concatena los números en orden."
+      },
+      {
+        "id": 3,
+        "text": "6, 6, 6, 6 para arcano-sombra-umbral-sigilo."
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "title": "La ventana",
+    "act": 5,
+    "mechanic": "window_approach",
+    "narrativeEntry": "Una pista abre una ventana. El entorno cambia. No hay respuesta escrita.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Este nivel no se resuelve escribiendo."
+      },
+      {
+        "id": 2,
+        "text": "La primera pista abre algo fuera de la pantalla."
+      },
+      {
+        "id": 3,
+        "text": "Usa una pista y observa la ventana del entorno."
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "title": "El ritual incompleto",
+    "act": 5,
+    "mechanic": "ritual",
+    "narrativeEntry": "Siete pasos sagrados. Uno debe omitirse. ¿Cuál nunca fue necesario?",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Siete pasos, pero solo seis son necesarios."
+      },
+      {
+        "id": 2,
+        "text": "«Romper» cierra lo que «Sellar» protege."
+      },
+      {
+        "id": 3,
+        "text": "Omite el paso que contradice el sello."
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "title": "El arcano reconstruido",
+    "act": 5,
+    "mechanic": "arcana_fragments",
+    "narrativeEntry": "Fragmentos de cartas. Reconstruye el arcano cero.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "El arcano cero es el inicio y el salto."
+      },
+      {
+        "id": 2,
+        "text": "Une los fragmentos: El + Loco."
+      },
+      {
+        "id": 3,
+        "text": "El Loco."
+      }
+    ]
+  },
+  {
+    "id": 51,
+    "title": "Registro de participante",
+    "act": 6,
+    "mechanic": "archive_record",
+    "narrativeEntry": "Expediente 51-A. Un nombre entre cientos. ¿Cuál es el tuyo?",
+    "hints": [
+      {
+        "id": 1,
+        "text": "El archivo te prestó un nombre al inicio."
+      },
+      {
+        "id": 2,
+        "text": "Busca el nombre invertido en el nivel siete."
+      },
+      {
+        "id": 3,
+        "text": "Tu nombre prestado está en la lista."
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "title": "Código de acceso",
+    "act": 6,
+    "mechanic": "archive_code",
+    "narrativeEntry": "Autorización requerida. El código son las iniciales de tres registros marcados.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Tres registros están resaltados."
+      },
+      {
+        "id": 2,
+        "text": "Toma la inicial de cada palabra de cada nombre."
+      },
+      {
+        "id": 3,
+        "text": "EVMTIC — iniciales de los tres nombres marcados."
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "title": "Documento redactado",
+    "act": 6,
+    "mechanic": "redacted_text",
+    "narrativeEntry": "███ palabras censuradas. Solo los espacios sobreviven legibles.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Cuenta los bloques censurados."
+      },
+      {
+        "id": 2,
+        "text": "Participante, observado o clasificado."
+      },
+      {
+        "id": 3,
+        "text": "Doce letras: participante."
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "title": "Línea temporal",
+    "act": 6,
+    "mechanic": "timeline",
+    "narrativeEntry": "Cuatro eventos. Un orden cronológico. El archivo los mezcló.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Primero la prueba, luego el umbral."
+      },
+      {
+        "id": 2,
+        "text": "La promesa precede a la carta del nivel diez."
+      },
+      {
+        "id": 3,
+        "text": "a → b → c → d."
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "title": "Referencia cruzada",
+    "act": 6,
+    "mechanic": "cross_reference",
+    "narrativeEntry": "Expediente 55 referencia al nivel 14. ¿Qué prometiste?",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Recuerda el nivel catorce."
+      },
+      {
+        "id": 2,
+        "text": "¿Rompiste o mantuviste la promesa?"
+      },
+      {
+        "id": 3,
+        "text": "Tu perfil determinó la acción correcta."
+      }
+    ]
+  },
+  {
+    "id": 56,
+    "title": "Entrada eliminada",
+    "act": 6,
+    "mechanic": "deleted_entry",
+    "narrativeEntry": "Registro borrado. Solo queda el número de expediente: ████.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Las dos primeras cifras están visibles."
+      },
+      {
+        "id": 2,
+        "text": "Reconstruye el número de cuatro dígitos."
+      },
+      {
+        "id": 3,
+        "text": "Usa las pistas parciales del registro borrado."
+      }
+    ]
+  },
+  {
+    "id": 57,
+    "title": "Testigos en conflicto",
+    "act": 6,
+    "mechanic": "witness_conflict",
+    "narrativeEntry": "Dos participantes describen el mismo evento. Uno miente.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "El nivel doce mostró cinco cartas."
+      },
+      {
+        "id": 2,
+        "text": "Uno de los testigos inventa el número."
+      },
+      {
+        "id": 3,
+        "text": "Cree al que dice cinco."
+      }
+    ]
+  },
+  {
+    "id": 58,
+    "title": "Secuencia de archivos",
+    "act": 6,
+    "mechanic": "file_sequence",
+    "narrativeEntry": "Expedientes numerados: A-2, A-4, A-8, A-?. Completa la serie.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Cada número duplica al anterior."
+      },
+      {
+        "id": 2,
+        "text": "2, 4, 8..."
+      },
+      {
+        "id": 3,
+        "text": "A-16."
+      }
+    ]
+  },
+  {
+    "id": 59,
+    "title": "Autorización final",
+    "act": 6,
+    "mechanic": "auth_code",
+    "narrativeEntry": "Código derivado de tus elecciones acumuladas. Umbral + promesa.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Primera letra de tu carta del nivel diez."
+      },
+      {
+        "id": 2,
+        "text": "R si rompiste la promesa, M si la mantuviste."
+      },
+      {
+        "id": 3,
+        "text": "Dos letras: S/R, F/R, etc."
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "title": "El sello del archivo",
+    "act": 6,
+    "mechanic": "archive_seal",
+    "narrativeEntry": "Cierra el expediente. Escribe: ARCHIVUM CLAUDITUR.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Latín ceremonial de cierre."
+      },
+      {
+        "id": 2,
+        "text": "ARCHIVUM CLAUDITUR — el archivo se cierra."
+      },
+      {
+        "id": 3,
+        "text": "Escríbelo exactamente como se indica."
+      }
+    ]
+  },
+  {
+    "id": 61,
+    "title": "El orden de la entidad",
+    "act": 7,
+    "mechanic": "entity_card_order",
+    "narrativeEntry": "La entidad recuerda lo que tú olvidaste. Reproduce el orden del nivel doce.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Recuerda el nivel doce."
+      },
+      {
+        "id": 2,
+        "text": "Cinco arcanos en el orden que aparecieron."
+      },
+      {
+        "id": 3,
+        "text": "Consulta tu cuaderno si anotaste el orden."
+      }
+    ]
+  },
+  {
+    "id": 62,
+    "title": "La voz",
+    "act": 7,
+    "mechanic": "entity_voice",
+    "narrativeEntry": "Algo escribe contigo. No respondas. Escucha y transcribe.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Espera a que aparezca el texto."
+      },
+      {
+        "id": 2,
+        "text": "Transcribe exactamente, sin interpretar."
+      },
+      {
+        "id": 3,
+        "text": "Cuatro palabras posibles: observo, confies, umbral, sombra."
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "title": "El espejo de respuestas",
+    "act": 7,
+    "mechanic": "mirror_answer",
+    "narrativeEntry": "La entidad repite tu respuesta del nivel once. ¿Era la correcta?",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Recuerda el nivel once y tu perfil."
+      },
+      {
+        "id": 2,
+        "text": "Los bondadosos debían poner límites."
+      },
+      {
+        "id": 3,
+        "text": "Si pusiste límites, afirma. Si no, niega."
+      }
+    ]
+  },
+  {
+    "id": 64,
+    "title": "Confianza",
+    "act": 7,
+    "mechanic": "trust_entity",
+    "narrativeEntry": "La entidad ofrece ayuda. ¿Confías?",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Tu perfil indica si debes confiar o dudar."
+      },
+      {
+        "id": 2,
+        "text": "Los escépticos no confían."
+      },
+      {
+        "id": 3,
+        "text": "Los que abren lo simbólico confían."
+      }
+    ]
+  },
+  {
+    "id": 65,
+    "title": "El falso auxiliar",
+    "act": 7,
+    "mechanic": "false_helper",
+    "narrativeEntry": "Dos voces ofrecen ayuda. Una es la entidad disfrazada.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "La entidad imita la voz amable."
+      },
+      {
+        "id": 2,
+        "text": "La voz que apura suele mentir."
+      },
+      {
+        "id": 3,
+        "text": "Detente. Mira atrás."
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "title": "El nombre de la entidad",
+    "act": 7,
+    "mechanic": "entity_name",
+    "narrativeEntry": "Fragmentos: N-O-C-T-U-A. ¿Cómo se llama?",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Une las letras en orden."
+      },
+      {
+        "id": 2,
+        "text": "Una palabra latina relacionada con búhos."
+      },
+      {
+        "id": 3,
+        "text": "Noctua."
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "title": "La posesión",
+    "act": 7,
+    "mechanic": "possession",
+    "narrativeEntry": "El cursor se mueve solo. Recupera el control sin hacer clic.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "No luches. No hagas clic."
+      },
+      {
+        "id": 2,
+        "text": "Espera a que suelte el control."
+      },
+      {
+        "id": 3,
+        "text": "Cero clics durante la posesión."
+      }
+    ]
+  },
+  {
+    "id": 68,
+    "title": "La cuarta pared",
+    "act": 7,
+    "mechanic": "meta_entity",
+    "narrativeEntry": "La entidad sabe que esto es un juego. ¿Tú también?",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Reconoce la naturaleza de la experiencia."
+      },
+      {
+        "id": 2,
+        "text": "Es un juego, una experiencia, una ficción."
+      },
+      {
+        "id": 3,
+        "text": "Responde «sí» o reconoce que es un juego."
+      }
+    ]
+  },
+  {
+    "id": 69,
+    "title": "El pacto",
+    "act": 7,
+    "mechanic": "bargain",
+    "narrativeEntry": "La entidad ofrece un atajo. A cambio: olvida un nivel.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Tu capacidad de renuncia determina la respuesta."
+      },
+      {
+        "id": 2,
+        "text": "Quien renuncia fácil rechaza atajos."
+      },
+      {
+        "id": 3,
+        "text": "Quien se aferra acepta."
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "title": "El rechazo",
+    "act": 7,
+    "mechanic": "reject_entity",
+    "narrativeEntry": "Di «no» a la entidad. Sin explicación.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Un límite sin justificación."
+      },
+      {
+        "id": 2,
+        "text": "«No» basta."
+      },
+      {
+        "id": 3,
+        "text": "Rechaza sin negociar."
+      }
+    ]
+  },
+  {
+    "id": 71,
+    "title": "Lo que falta",
+    "act": 8,
+    "mechanic": "missing_ui",
+    "narrativeEntry": "Un botón debería estar aquí. No lo está. ¿Qué acción falta?",
+    "hints": [
+      {
+        "id": 1,
+        "text": "No hay botón porque no debe haber acción."
+      },
+      {
+        "id": 2,
+        "text": "La ausencia es la respuesta."
+      },
+      {
+        "id": 3,
+        "text": "No hagas nada. Escribe «nada»."
+      }
+    ]
+  },
+  {
+    "id": 72,
+    "title": "La página en blanco",
+    "act": 8,
+    "mechanic": "blank_page",
+    "narrativeEntry": "Blanco total. Selecciona el texto invisible.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Selecciona el área central de la página."
+      },
+      {
+        "id": 2,
+        "text": "Hay texto del color del fondo."
+      },
+      {
+        "id": 3,
+        "text": "Vacío, silencio o ausencia."
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "title": "El silencio",
+    "act": 8,
+    "mechanic": "silence",
+    "narrativeEntry": "No escribas. No pulses. Solo silencio.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "No interactúes durante el tiempo indicado."
+      },
+      {
+        "id": 2,
+        "text": "Cero teclas, cero clics."
+      },
+      {
+        "id": 3,
+        "text": "Espera en silencio completo."
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "title": "Sin etiquetas",
+    "act": 8,
+    "mechanic": "unlabeled",
+    "narrativeEntry": "Tres formas idénticas. Solo una es hueco.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Pasa el cursor sobre cada forma."
+      },
+      {
+        "id": 2,
+        "text": "Una no responde al hover igual."
+      },
+      {
+        "id": 3,
+        "text": "El hueco es la ausencia de contenido."
+      }
+    ]
+  },
+  {
+    "id": 75,
+    "title": "El espacio negativo",
+    "act": 8,
+    "mechanic": "negative_space",
+    "narrativeEntry": "Las figuras forman una letra en el vacío entre ellas.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Mira lo que no está dibujado."
+      },
+      {
+        "id": 2,
+        "text": "Las figuras delimitan una letra."
+      },
+      {
+        "id": 3,
+        "text": "A, O, X o I."
+      }
+    ]
+  },
+  {
+    "id": 76,
+    "title": "Lo removido",
+    "act": 8,
+    "mechanic": "removed_item",
+    "narrativeEntry": "Había cuatro objetos. Ahora hay tres. ¿Cuál fue removido?",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Compara con lo que recuerdas ver."
+      },
+      {
+        "id": 2,
+        "text": "Uno de los cuatro clásicos falta."
+      },
+      {
+        "id": 3,
+        "text": "Elige el que no aparece entre los tres."
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "title": "Inventario vacío",
+    "act": 8,
+    "mechanic": "empty_inventory",
+    "narrativeEntry": "Tu inventario está vacío. Eso es lo que tienes. Confírmalo.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "No inventes objetos."
+      },
+      {
+        "id": 2,
+        "text": "Confirma la vacuidad."
+      },
+      {
+        "id": 3,
+        "text": "Escribe «vacío» o «nada»."
+      }
+    ]
+  },
+  {
+    "id": 78,
+    "title": "La elección del vacío",
+    "act": 8,
+    "mechanic": "void_choice",
+    "narrativeEntry": "Tres opciones y un espacio vacío. Elige lo que no está listado.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Hay una cuarta opción invisible."
+      },
+      {
+        "id": 2,
+        "text": "No elijas luz, sombra ni camino."
+      },
+      {
+        "id": 3,
+        "text": "Selecciona el espacio vacío."
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "title": "Casi nada",
+    "act": 8,
+    "mechanic": "minimal",
+    "narrativeEntry": "Un punto. Nada más. Mantén la mirada.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "No busques más elementos."
+      },
+      {
+        "id": 2,
+        "text": "Mira el punto el tiempo indicado."
+      },
+      {
+        "id": 3,
+        "text": "La paciencia es la única acción."
+      }
+    ]
+  },
+  {
+    "id": 80,
+    "title": "Ain",
+    "act": 8,
+    "mechanic": "ain",
+    "narrativeEntry": "אין — Nada. Ni siquiera esta palabra debería existir.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "En la cábala, Ain es la nada absoluta."
+      },
+      {
+        "id": 2,
+        "text": "Envía vacío. Sin texto."
+      },
+      {
+        "id": 3,
+        "text": "Pulsa enviar sin escribir nada."
+      }
+    ]
+  },
+  {
+    "id": 81,
+    "title": "El umbral recordado",
+    "act": 9,
+    "mechanic": "judgment_threshold",
+    "narrativeEntry": "El juicio pregunta: ¿Qué carta elegiste en el primer umbral?",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Nivel diez: tres cartas."
+      },
+      {
+        "id": 2,
+        "text": "Silencio, Filo o Raíz."
+      },
+      {
+        "id": 3,
+        "text": "Tu elección quedó registrada."
+      }
+    ]
+  },
+  {
+    "id": 82,
+    "title": "El nombre en juicio",
+    "act": 9,
+    "mechanic": "judgment_name",
+    "narrativeEntry": "Declara el nombre que el archivo te prestó.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Nivel siete."
+      },
+      {
+        "id": 2,
+        "text": "El nombre que apareció y desapareció."
+      },
+      {
+        "id": 3,
+        "text": "Tu borrowedName del perfil."
+      }
+    ]
+  },
+  {
+    "id": 83,
+    "title": "Las cartas vistas",
+    "act": 9,
+    "mechanic": "judgment_cards",
+    "narrativeEntry": "¿Cuántos arcanos mayores existen en total?",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Del Loco (0) al Mundo (21)."
+      },
+      {
+        "id": 2,
+        "text": "Veintidós arcanos mayores."
+      },
+      {
+        "id": 3,
+        "text": "22."
+      }
+    ]
+  },
+  {
+    "id": 84,
+    "title": "La promesa juzgada",
+    "act": 9,
+    "mechanic": "judgment_promise",
+    "narrativeEntry": "¿Rompiste la promesa del nivel catorce?",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Nivel catorce: promesa al archivo."
+      },
+      {
+        "id": 2,
+        "text": "Tu perfil determinó si debías romper o mantener."
+      },
+      {
+        "id": 3,
+        "text": "Responde con honestidad según tu acción."
+      }
+    ]
+  },
+  {
+    "id": 85,
+    "title": "El estado de la entidad",
+    "act": 9,
+    "mechanic": "judgment_entity",
+    "narrativeEntry": "¿Rechazaste a la entidad en el nivel setenta?",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Nivel setenta: di «no»."
+      },
+      {
+        "id": 2,
+        "text": "Si completaste el 70, rechazaste."
+      },
+      {
+        "id": 3,
+        "text": "Responde según tu progreso real."
+      }
+    ]
+  },
+  {
+    "id": 86,
+    "title": "La balanza del juicio",
+    "act": 9,
+    "mechanic": "judgment_scale",
+    "narrativeEntry": "Pesa tus decisiones: ¿Más límites o más apertura?",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Tu dimensión dominante indica qué necesitas."
+      },
+      {
+        "id": 2,
+        "text": "Los muy bondadosos necesitan límites."
+      },
+      {
+        "id": 3,
+        "text": "Los controladores necesitan apertura."
+      }
+    ]
+  },
+  {
+    "id": 87,
+    "title": "Acusación o defensa",
+    "act": 9,
+    "mechanic": "accusation",
+    "narrativeEntry": "El archivo te acusa de curiosidad excesiva. ¿Te defiendes o aceptas?",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Si fuiste curioso, acepta."
+      },
+      {
+        "id": 2,
+        "text": "Si no, defiéndete."
+      },
+      {
+        "id": 3,
+        "text": "La honestidad ante el juicio."
+      }
+    ]
+  },
+  {
+    "id": 88,
+    "title": "La pregunta final",
+    "act": 9,
+    "mechanic": "final_question",
+    "narrativeEntry": "¿Cuál es tu arquetipo dominante?",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Resultado de la prueba inicial."
+      },
+      {
+        "id": 2,
+        "text": "El Observador, El Tramposo, etc."
+      },
+      {
+        "id": 3,
+        "text": "Tu primaryArchetype."
+      }
+    ]
+  },
+  {
+    "id": 89,
+    "title": "Aceptar las consecuencias",
+    "act": 9,
+    "mechanic": "accept_consequences",
+    "narrativeEntry": "Cien umbrales. ¿Aceptas lo que construiste?",
+    "hints": [
+      {
+        "id": 1,
+        "text": "No hay apelación."
+      },
+      {
+        "id": 2,
+        "text": "Acepta lo construido."
+      },
+      {
+        "id": 3,
+        "text": "Escribe «acepto»."
+      }
+    ]
+  },
+  {
+    "id": 90,
+    "title": "El veredicto",
+    "act": 9,
+    "mechanic": "verdict",
+    "narrativeEntry": "El Juicio (arcano XX) habla. Nombra la carta.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Arcano XX."
+      },
+      {
+        "id": 2,
+        "text": "Renacimiento y llamada final."
+      },
+      {
+        "id": 3,
+        "text": "El Juicio."
+      }
+    ]
+  },
+  {
+    "id": 91,
+    "title": "Fragmentos del camino",
+    "act": 10,
+    "mechanic": "path_fragments",
+    "narrativeEntry": "Trozos de un mapa. Únelos en orden: norte, este, sur.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Sigue la brújula: N, E, S."
+      },
+      {
+        "id": 2,
+        "text": "Norte primero, luego este, luego sur."
+      },
+      {
+        "id": 3,
+        "text": "norte → este → sur."
+      }
+    ]
+  },
+  {
+    "id": 92,
+    "title": "Coordenadas parciales",
+    "act": 10,
+    "mechanic": "map_partial",
+    "narrativeEntry": "Latitud visible. Longitud oculta hasta completar el ritual.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "La latitud ya está visible."
+      },
+      {
+        "id": 2,
+        "text": "Confírmala tal como aparece."
+      },
+      {
+        "id": 3,
+        "text": "Solo necesitas la primera coordenada aquí."
+      }
+    ]
+  },
+  {
+    "id": 93,
+    "title": "Dirección simbólica",
+    "act": 10,
+    "mechanic": "direction",
+    "narrativeEntry": "Símbolos apuntan. Sigue la secuencia del nivel cuatro.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Recuerda el nivel cuatro: No mires."
+      },
+      {
+        "id": 2,
+        "text": "Cuatro símbolos en orden."
+      },
+      {
+        "id": 3,
+        "text": "Escribe la secuencia sin espacios."
+      }
+    ]
+  },
+  {
+    "id": 94,
+    "title": "Tres puertas",
+    "act": 10,
+    "mechanic": "three_doors",
+    "narrativeEntry": "Tres puertas como al inicio. Elige la que no elegiste antes.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Nivel diez: elegiste una carta."
+      },
+      {
+        "id": 2,
+        "text": "No repitas tu elección inicial."
+      },
+      {
+        "id": 3,
+        "text": "Cualquiera de las otras dos puertas abre."
+      }
+    ]
+  },
+  {
+    "id": 95,
+    "title": "Nombre del lugar",
+    "act": 10,
+    "mechanic": "location_name",
+    "narrativeEntry": "Letras dispersas forman el nombre del destino.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Une las letras visibles."
+      },
+      {
+        "id": 2,
+        "text": "La primera palabra del destino final."
+      },
+      {
+        "id": 3,
+        "text": "Consulta FINAL_DESTINATION_LABEL en el despliegue."
+      }
+    ]
+  },
+  {
+    "id": 96,
+    "title": "Ritual de llegada",
+    "act": 10,
+    "mechanic": "arrival_ritual",
+    "narrativeEntry": "Toca las esferas en orden: Kéter, Tiféret, Maljut.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Del árbol de la vida: corona, centro, reino."
+      },
+      {
+        "id": 2,
+        "text": "Kéter → Tiféret → Maljut."
+      },
+      {
+        "id": 3,
+        "text": "Tres toques en ese orden."
+      }
+    ]
+  },
+  {
+    "id": 97,
+    "title": "Palabras del cuaderno",
+    "act": 10,
+    "mechanic": "words_password",
+    "narrativeEntry": "El lugar exige una palabra que recogiste en el camino.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Revisa tu cuaderno y context.words."
+      },
+      {
+        "id": 2,
+        "text": "Nombre prestado, keter, o palabras de niveles."
+      },
+      {
+        "id": 3,
+        "text": "La última palabra acumulada suele ser la clave."
+      }
+    ]
+  },
+  {
+    "id": 98,
+    "title": "Cerca del destino",
+    "act": 10,
+    "mechanic": "near_destination",
+    "narrativeEntry": "Ya no estás en el juego. Estás cerca del lugar. Confirma.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Confirma que estás listo."
+      },
+      {
+        "id": 2,
+        "text": "«Cerca» o «listo»."
+      },
+      {
+        "id": 3,
+        "text": "Un paso más y verás las coordenadas."
+      }
+    ]
+  },
+  {
+    "id": 99,
+    "title": "Confirmación final",
+    "act": 10,
+    "mechanic": "confirmation",
+    "narrativeEntry": "Antes del lugar: ¿Deseas conocer las coordenadas del destino?",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Este paso es irreversible."
+      },
+      {
+        "id": 2,
+        "text": "Escribe «confirmo» o «acepto»."
+      },
+      {
+        "id": 3,
+        "text": "Confirma para revelar el destino."
+      }
+    ]
+  },
+  {
+    "id": 100,
+    "title": "El lugar",
+    "act": 10,
+    "mechanic": "final_destination",
+    "narrativeEntry": "No encontraste este lugar. Lo construiste. Las coordenadas te esperan.",
+    "hints": [
+      {
+        "id": 1,
+        "text": "Las coordenadas se muestran vía API al confirmar."
+      },
+      {
+        "id": 2,
+        "text": "Consulta /api/final/destino o la página final."
+      },
+      {
+        "id": 3,
+        "text": "Introduce las coordenadas exactas del destino seguro."
+      }
+    ]
+  }
+]

@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model GameSession {
+  id                String   @id @default(cuid())
+  seed              String
+  recoveryCode      String   @unique
+  personalityJson   String?
+  currentLevel      Int      @default(0)
+  completedLevels   String   @default("[]")
+  totalAttempts     Int      @default(0)
+  totalHintsUsed    Int      @default(0)
+  playTimeSeconds   Int      @default(0)
+  entityState       String   @default("{}")
+  narrativeJson     String   @default("{}")
+  cardsSeenJson     String   @default("[]")
+  symbolsJson       String   @default("[]")
+  wordsJson         String   @default("[]")
+  levelVariantsJson String   @default("{}")
+  analyticsOptOut   Boolean  @default(false)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  levelProgress   LevelProgress[]
+  levelAttempts   LevelAttempt[]
+  notebookEntries NotebookEntry[]
+  analyticsEvents AnalyticsEvent[]
+}
+
+model LevelProgress {
+  id          String    @id @default(cuid())
+  sessionId   String
+  levelId     Int
+  completed   Boolean   @default(false)
+  attempts    Int       @default(0)
+  hintsUsed   Int       @default(0)
+  variantJson String    @default("{}")
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  session GameSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@unique([sessionId, levelId])
+}
+
+model LevelAttempt {
+  id           String   @id @default(cuid())
+  sessionId    String
+  levelId      Int
+  submissionHash String
+  success      Boolean
+  createdAt    DateTime @default(now())
+
+  session GameSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId, levelId])
+}
+
+model NotebookEntry {
+  id        String   @id @default(cuid())
+  sessionId String
+  category  String   @default("note")
+  title     String?
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  session GameSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId])
+}
+
+model AnalyticsEvent {
+  id        String   @id @default(cuid())
+  sessionId String?
+  eventType String
+  levelId   Int?
+  metadata  String   @default("{}")
+  createdAt DateTime @default(now())
+
+  session GameSession? @relation(fields: [sessionId], references: [id], onDelete: SetNull)
+
+  @@index([eventType, levelId])
+}
+
+model AdminConfig {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+}

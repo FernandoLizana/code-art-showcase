@@ -1,0 +1,240 @@
+{% extends "base.html" %}
+
+
+
+{% block title %}Comprar píxeles — PixelWall Ads{% endblock %}
+
+
+
+{% block content %}
+
+<section class="page-header">
+
+  <div class="container">
+
+    <h1 class="page-title">Reserva tu espacio</h1>
+
+    <p class="page-desc">
+      Compra inicial desde <strong>${{ grid_config.price_per_cell }} CLP/celda</strong>.
+      Plan mensual: <strong>${{ grid_config.monthly_price_per_cell }} CLP/celda/mes</strong> o tus píxeles mueren.
+      Reemplazar píxeles ajenos cuesta más (2x, 3x…).
+    </p>
+
+  </div>
+
+</section>
+
+
+
+<section class="buy-section">
+
+  <div class="container buy-layout">
+
+    <div class="buy-grid-col">
+
+      <div class="grid-toolbar">
+
+        <span id="selection-info" class="selection-info">Selecciona un bloque en la grilla</span>
+
+        <span id="selection-price" class="selection-price"></span>
+
+      </div>
+
+      <div id="selection-error" class="selection-error" hidden></div>
+
+      <div id="selection-notice" class="selection-notice" hidden></div>
+
+      <div class="grid-wrapper grid-wrapper--scroll">
+
+        <div id="buy-grid"
+
+             class="pixel-grid pixel-grid--interactive"
+
+             data-mode="buy"
+
+             data-grid-width="{{ grid_config.grid_width }}"
+
+             data-grid-height="{{ grid_config.grid_height }}"
+
+             data-cell-size="{{ grid_config.cell_size }}">
+
+        </div>
+
+      </div>
+
+      <div class="grid-legend">
+
+        <span class="legend-item"><span class="legend-swatch legend-swatch--available"></span> Libre</span>
+
+        <span class="legend-item"><span class="legend-swatch legend-swatch--occupied"></span> Ocupado (reemplazable)</span>
+
+        <span class="legend-item"><span class="legend-swatch legend-swatch--reserved"></span> Reservado</span>
+
+        <span class="legend-item"><span class="legend-swatch legend-swatch--selected"></span> Tu selección</span>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="buy-form-col">
+
+      <form id="buy-form" class="buy-form" action="{{ url_for('create_ad') }}" method="POST" enctype="multipart/form-data">
+
+        <input type="hidden" name="x" id="field-x" value="">
+
+        <input type="hidden" name="y" id="field-y" value="">
+
+        <input type="hidden" name="width" id="field-width" value="">
+
+        <input type="hidden" name="height" id="field-height" value="">
+
+
+
+        <div class="form-group">
+
+          <label for="advertiser_name">Nombre del anunciante *</label>
+
+          <input type="text" id="advertiser_name" name="advertiser_name" required maxlength="120" placeholder="Tu marca o nombre">
+
+        </div>
+
+
+
+        <div class="form-group">
+
+          <label for="email">Email *</label>
+
+          <input type="email" id="email" name="email" required maxlength="200" placeholder="contacto@tumarca.cl">
+
+        </div>
+
+
+
+        <div class="form-group">
+
+          <label for="title">Título del anuncio *</label>
+
+          <input type="text" id="title" name="title" required maxlength="200" placeholder="Tu slogan o título">
+
+        </div>
+
+
+
+        <div class="form-group">
+
+          <label for="target_url">URL del anuncio *</label>
+
+          <input type="url" id="target_url" name="target_url" required maxlength="500" placeholder="https://tumarca.cl">
+
+        </div>
+
+
+
+        <div class="form-group">
+
+          <label for="background_color">Color de fondo</label>
+
+          <div class="color-input-wrap">
+
+            <input type="color" id="background_color" name="background_color" value="#00ffcc">
+
+            <input type="text" id="background_color_text" value="#00ffcc" maxlength="7" pattern="#[0-9a-fA-F]{6}">
+
+          </div>
+
+        </div>
+
+
+
+        <div class="form-group">
+
+          <label for="image">Imagen (opcional)</label>
+
+          <input type="file" id="image" name="image" accept=".png,.jpg,.jpeg,.webp,.gif">
+
+          <small class="form-hint">PNG, JPG, WEBP o GIF. Máx. 2 MB.</small>
+
+        </div>
+
+
+
+        <div class="form-summary" id="form-summary">
+
+          <p>Celdas: <strong id="summary-cells">0</strong></p>
+
+          <p id="summary-premium" class="form-hint" hidden></p>
+
+          <p>Total: <strong id="summary-price">$0 CLP</strong></p>
+
+        </div>
+
+
+
+        <button type="submit" class="btn btn--primary btn--full" id="submit-btn" disabled>
+
+          Reservar espacio
+
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+<script>
+
+  window.PIXELWALL_CONFIG = {{ grid_config | tojson }};
+
+  window.PIXELWALL_OCCUPIED_ADS = {{ occupied_json | tojson }};
+
+  window.PIXELWALL_PENDING_ADS = {{ pending_json | tojson }};
+
+</script>
+
+<script src="{{ url_for('static', filename='js/grid.js') }}"></script>
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', () => {
+
+    PixelGrid.initBuy(
+
+      '#buy-grid',
+
+      window.PIXELWALL_OCCUPIED_ADS,
+
+      window.PIXELWALL_PENDING_ADS
+
+    );
+
+
+
+    const colorPicker = document.getElementById('background_color');
+
+    const colorText = document.getElementById('background_color_text');
+
+    colorPicker.addEventListener('input', () => { colorText.value = colorPicker.value; });
+
+    colorText.addEventListener('input', () => {
+
+      if (/^#[0-9a-fA-F]{6}$/.test(colorText.value)) colorPicker.value = colorText.value;
+
+    });
+
+  });
+
+</script>
+
+{% endblock %}
+

@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+
+{% block title %}Comprar espacio{% endblock %}
+
+{% block content %}
+<section class="buy-section">
+  <div class="container">
+    <div class="buy-header">
+      <h1 class="section-title">Reserva tu <span class="gradient-text">espacio</span></h1>
+      <p class="section-subtitle">Elige el cuerpo celeste que mejor represente tu marca y completa el formulario.</p>
+    </div>
+
+    <div class="buy-layout">
+      <!-- Selector de tipo -->
+      <div class="buy-form-col">
+        <form id="buyForm" enctype="multipart/form-data" novalidate>
+          <div class="form-group">
+            <label>Tipo de espacio</label>
+            <div class="space-selector" id="spaceSelector">
+              {% for key, info in space_types.items() %}
+              <label class="space-option {% if key == preselect %}selected{% endif %}" data-type="{{ key }}" data-price="{{ info.price }}" data-size="{{ info.size }}" data-color-group="{{ info.category_group }}">
+                <input type="radio" name="space_type" value="{{ key }}" {% if key == preselect %}checked{% endif %}>
+                <span class="space-option-icon">
+                  {% if info.category_group == 'planet' %}🪐{% elif info.category_group == 'constellation' %}✨{% else %}⭐{% endif %}
+                </span>
+                <span class="space-option-label">{{ info.label }}</span>
+                <span class="space-option-price">${{ "{:,}".format(info.price).replace(",", ".") }}</span>
+              </label>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="price-display" id="priceDisplay">
+            Precio: <strong id="priceValue">${{ "{:,}".format(space_types[preselect].price).replace(",", ".") }} CLP</strong>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="advertiser_name">Nombre del anunciante *</label>
+              <input type="text" id="advertiser_name" name="advertiser_name" required maxlength="120" placeholder="Tu nombre completo">
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required maxlength="200" placeholder="tu@email.com">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="brand_name">Nombre de la marca *</label>
+              <input type="text" id="brand_name" name="brand_name" required maxlength="120" placeholder="Mi Marca">
+            </div>
+            <div class="form-group">
+              <label for="category">Categoría *</label>
+              <select id="category" name="category" required>
+                <option value="">Seleccionar...</option>
+                {% for cat in categories %}
+                <option value="{{ cat }}">{{ cat }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="title">Título del anuncio *</label>
+            <input type="text" id="title" name="title" required maxlength="200" placeholder="Ej: La mejor cafetería de Santiago">
+          </div>
+
+          <div class="form-group">
+            <label for="description">Descripción corta *</label>
+            <textarea id="description" name="description" required maxlength="500" rows="3" placeholder="Describe tu marca en pocas palabras..."></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="target_url">URL de destino *</label>
+              <input type="url" id="target_url" name="target_url" required maxlength="500" placeholder="https://tu-sitio.com">
+              <span class="field-hint" id="urlHint"></span>
+            </div>
+            <div class="form-group">
+              <label for="main_color">Color principal</label>
+              <input type="color" id="main_color" name="main_color" value="#7c5cff">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="logo">Logo o imagen (opcional, máx. 2MB)</label>
+            <input type="file" id="logo" name="logo" accept=".png,.jpg,.jpeg,.gif,.webp,.svg">
+          </div>
+
+          <div class="form-alert" id="formAlert" hidden></div>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-block" id="submitBtn">
+            Reservar espacio
+          </button>
+
+          <p class="form-note">
+            Tu solicitud quedará como <strong>pendiente</strong> hasta ser aprobada.
+            <!-- Integración Mercado Pago: aquí se redirigirá al checkout -->
+          </p>
+        </form>
+      </div>
+
+      <!-- Vista previa -->
+      <div class="buy-preview-col">
+        <div class="preview-card">
+          <h3>Vista previa</h3>
+          <div class="preview-universe" id="previewUniverse">
+            <div class="preview-body" id="previewBody"></div>
+          </div>
+          <div class="preview-info" id="previewInfo">
+            <h4 id="previewBrand">Mi Marca</h4>
+            <p id="previewTitle">Título del anuncio</p>
+            <span class="preview-type" id="previewType">{{ space_types[preselect].label }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal de éxito -->
+<div class="modal-overlay" id="successModal" hidden>
+  <div class="modal modal-success">
+    <div class="success-icon">🚀</div>
+    <h2>¡Solicitud enviada!</h2>
+    <p>Tu espacio ha sido reservado y está <strong>pendiente de aprobación</strong>. Te notificaremos cuando brille en el universo.</p>
+    <a href="{{ url_for('index') }}" class="btn btn-primary">Ver universo</a>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('buyForm');
+  const spaceSelector = document.getElementById('spaceSelector');
+  const priceValue = document.getElementById('priceValue');
+  const previewBody = document.getElementById('previewBody');
+  const previewBrand = document.getElementById('previewBrand');
+  const previewTitle = document.getElementById('previewTitle');
+  const previewType = document.getElementById('previewType');
+  const mainColor = document.getElementById('main_color');
+  const formAlert = document.getElementById('formAlert');
+  const successModal = document.getElementById('successModal');
+  const urlInput = document.getElementById('target_url');
+  const urlHint = document.getElementById('urlHint');
+
+  const spaceTypes = {{ space_types | tojson }};
+
+  function updatePreview() {
+    const selected = spaceSelector.querySelector('input:checked');
+    if (!selected) return;
+    const type = selected.value;
+    const info = spaceTypes[type];
+    const color = mainColor.value;
+    const size = info.size;
+
+    previewBody.className = 'preview-body';
+    previewBody.style.width = size + 'px';
+    previewBody.style.height = size + 'px';
+    previewBody.style.background = color;
+    previewBody.style.boxShadow = `0 0 ${size}px ${color}`;
+
+    if (info.category_group === 'planet') previewBody.classList.add('preview-planet');
+    else if (info.category_group === 'constellation') previewBody.classList.add('preview-constellation');
+    else previewBody.classList.add('preview-star');
+
+    priceValue.textContent = '$' + info.price.toLocaleString('es-CL') + ' CLP';
+    previewType.textContent = info.label;
+    previewBrand.textContent = document.getElementById('brand_name').value || 'Mi Marca';
+    previewTitle.textContent = document.getElementById('title').value || 'Título del anuncio';
+  }
+
+  spaceSelector.addEventListener('click', (e) => {
+    const option = e.target.closest('.space-option');
+    if (!option) return;
+    spaceSelector.querySelectorAll('.space-option').forEach(o => o.classList.remove('selected'));
+    option.classList.add('selected');
+    option.querySelector('input').checked = true;
+    updatePreview();
+  });
+
+  ['brand_name', 'title', 'main_color'].forEach(id => {
+    document.getElementById(id).addEventListener('input', updatePreview);
+  });
+
+  let urlTimeout;
+  urlInput.addEventListener('input', () => {
+    clearTimeout(urlTimeout);
+    urlTimeout = setTimeout(async () => {
+      const url = urlInput.value.trim();
+      if (!url) { urlHint.textContent = ''; return; }
+      const res = await fetch('/api/validate-url', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url }),
+      });
+      const data = await res.json();
+      urlHint.textContent = data.valid ? '✓ URL válida' : '✗ URL inválida';
+      urlHint.className = 'field-hint ' + (data.valid ? 'valid' : 'invalid');
+    }, 500);
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    formAlert.hidden = true;
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
+    const formData = new FormData(form);
+    try {
+      const res = await fetch('/api/spaces', { method: 'POST', body: formData });
+      const data = await res.json();
+      if (res.ok) {
+        successModal.hidden = false;
+        form.reset();
+        updatePreview();
+      } else {
+        formAlert.textContent = data.error || 'Error al enviar la solicitud.';
+        formAlert.hidden = false;
+        formAlert.className = 'form-alert error';
+      }
+    } catch {
+      formAlert.textContent = 'Error de conexión. Intenta de nuevo.';
+      formAlert.hidden = false;
+      formAlert.className = 'form-alert error';
+    }
+    btn.disabled = false;
+    btn.textContent = 'Reservar espacio';
+  });
+
+  updatePreview();
+});
+</script>
+{% endblock %}

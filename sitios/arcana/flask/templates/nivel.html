@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+{% block title %}{{ game_name }}{% endblock %}
+{% block content %}
+<div style="padding:5rem 1.5rem 3rem;max-width:40rem;margin:0 auto">
+  <p class="narrative" style="margin-bottom:2rem">{{ level.narrative }}</p>
+
+  <form id="level-form" method="post" data-ui-type="{{ ui_type }}" data-level-id="{{ level.id }}"
+        {% if params.durationMs %}data-duration="{{ params.durationMs }}"{% endif %}>
+    <input type="hidden" name="payload" id="payload-json" value="">
+
+    {# --- Nivel 1: puerta --- #}
+    {% if level.id == 1 %}
+    <div style="position:relative;height:16rem;width:12rem;margin:0 auto;border:1px solid var(--border-subtle);background:var(--bg-elevated)">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:space-around;padding:0 0.5rem">
+        {% for mark in ['I','II','III','IV','V','VI','VII'] %}
+        <button type="button" class="terminal" data-mark-index="{{ loop.index0 }}"
+                style="background:none;border:none;color:var(--text-faint);cursor:pointer;font-size:0.85rem">{{ mark }}</button>
+        {% endfor %}
+      </div>
+    </div>
+
+    {# --- Nivel 2: carta ausente --- #}
+    {% elif level.id == 2 %}
+    <div class="level-grid">
+      {% for card in params.cards or [] %}
+      <button type="button" class="panel option" data-card-id="{{ card.id }}" style="min-width:5rem">{{ card.label }}</button>
+      {% endfor %}
+    </div>
+
+    {# --- Nivel 3: habitación negra --- #}
+    {% elif level.id == 3 %}
+    <div id="black-room" class="black-room" data-zone='{{ params.hiddenZone | tojson }}'>
+      <div id="hidden-field" class="hidden-field">
+        <input type="text" id="text-answer" class="input" placeholder="..." aria-label="Respuesta oculta">
+      </div>
+    </div>
+    <button type="button" id="text-submit" class="btn" style="margin-top:1rem">—</button>
+
+    {# --- Nivel 4: ojo --- #}
+    {% elif level.id == 4 %}
+    <div style="text-align:center">
+      <div id="watching-eye" style="font-size:4rem;opacity:0.15;cursor:default;transition:opacity 0.3s">◉</div>
+      <p class="terminal" style="margin:1.5rem 0;color:var(--text-faint)">◉</p>
+      <input type="text" id="eye-answer" class="input" style="max-width:16rem;margin:0 auto" placeholder="…">
+      <button type="button" id="eye-submit" class="btn" style="margin-top:1rem">—</button>
+    </div>
+
+    {# --- Nivel 5: árbol --- #}
+    {% elif level.id == 5 %}
+    <div class="level-grid">
+      {% for opt in params.options or [] %}
+      <button type="button" class="panel option" data-choice-id="{{ opt.id }}">{{ opt.label }}</button>
+      {% endfor %}
+    </div>
+
+    {# --- Nivel 6: balance --- #}
+    {% elif level.id == 6 %}
+    <div style="text-align:center">
+      <div id="balance-bar" style="position:relative;height:2px;background:var(--border-subtle);margin:2rem 0">
+        <div id="balance-indicator" style="position:absolute;top:-6px;width:12px;height:12px;background:var(--accent-gold);transform:translateX(-50%)"></div>
+      </div>
+      <div style="display:flex;gap:1rem;justify-content:center">
+        <button type="button" id="balance-left" class="btn">←</button>
+        <button type="button" id="balance-submit" class="btn">—</button>
+        <button type="button" id="balance-right" class="btn">→</button>
+      </div>
+    </div>
+
+    {# --- Nivel 7: patrón + nombre --- #}
+    {% elif level.id == 7 %}
+    {% if params.patternDisplay %}<p class="terminal" style="letter-spacing:0.3em;margin-bottom:1.5rem">{{ params.patternDisplay }}</p>{% endif %}
+    <input type="text" id="text-answer" class="input" placeholder="…">
+    <button type="button" id="text-submit" class="btn" style="margin-top:1rem">—</button>
+
+    {# --- Nivel 8: espera --- #}
+    {% elif level.id == 8 %}
+    <div style="text-align:center">
+      <button type="button" id="candle" style="background:none;border:none;cursor:pointer">
+        <div style="width:8px;height:2rem;background:var(--accent-gold);margin:0 auto;opacity:0.8;border-radius:2px"></div>
+        <div style="width:1rem;height:4rem;background:var(--bg-elevated);border:1px solid var(--border-subtle);margin:0 auto"></div>
+      </button>
+      <div style="width:12rem;height:1px;background:var(--border-subtle);margin:1.5rem auto">
+        <div id="wait-progress" style="height:1px;background:var(--accent-gold-dim);width:0"></div>
+      </div>
+      <p class="terminal" style="color:var(--text-faint)">·</p>
+    </div>
+
+    {# --- Nivel 9: secuencia --- #}
+    {% elif level.id == 9 %}
+    <div class="level-grid">
+      {% for sym in params.symbols or [] %}
+      <button type="button" class="panel option" data-choice-id="{{ sym }}">{{ sym }}</button>
+      {% endfor %}
+    </div>
+
+    {# --- Nivel 10: cartas --- #}
+    {% elif level.id == 10 %}
+    <div class="level-grid">
+      {% for card in params.cards or [] %}
+      <button type="button" class="panel option" data-card-id="{{ card.id }}">{{ card.label }}</button>
+      {% endfor %}
+    </div>
+
+    {# --- Genérico por uiType --- #}
+    {% elif ui_type in ['text','inverted_text','rejected_answer','spaced_text','strikethrough','redacted_text'] %}
+    {% if params.displayText %}<p class="narrative" style="margin-bottom:1rem">{{ params.displayText }}</p>{% endif %}
+    {% if params.content %}<p class="terminal" style="margin-bottom:1rem;{% if ui_type == 'inverted_text' %}transform:scaleY(-1){% endif %}">{{ params.content }}</p>{% endif %}
+    {% if params.symbols %}
+    <p style="letter-spacing:0.5em;margin-bottom:1rem">{% for s in params.symbols %}{{ s }} {% endfor %}</p>
+    {% endif %}
+    <input type="text" id="text-answer" class="input" placeholder="…">
+    <button type="button" id="text-submit" class="btn" style="margin-top:1rem">—</button>
+
+    {% elif ui_type in ['choice','between_choice','void_choice','intuitive_pick','card_orientation','possession'] %}
+    <div class="level-grid">
+      {% for opt in params.options or [] %}
+      <button type="button" class="panel option" data-choice-id="{{ opt.id }}">{{ opt.label }}</button>
+      {% endfor %}
+    </div>
+
+    {% elif ui_type == 'cards' %}
+    <div class="level-grid">
+      {% for card in params.cards or [] %}
+      <button type="button" class="panel option" data-card-id="{{ card.id }}">{{ card.label }}</button>
+      {% endfor %}
+    </div>
+
+    {% elif ui_type in ['wait','silence'] %}
+    <div style="text-align:center">
+      <p class="narrative">·</p>
+      <div style="width:12rem;height:1px;background:var(--border-subtle);margin:1.5rem auto">
+        <div id="wait-progress" style="height:1px;background:var(--accent-gold-dim);width:0"></div>
+      </div>
+      <button type="button" id="candle" class="btn btn-ghost">...</button>
+    </div>
+
+    {% elif ui_type == 'red_button' %}
+    <button type="button" id="red-button" class="btn" style="border-color:var(--accent-red);color:var(--accent-red)">·</button>
+
+    {% elif ui_type == 'empty_submit' %}
+    <button type="button" id="empty-submit" class="btn btn-ghost">—</button>
+
+    {% elif ui_type == 'confirmation' %}
+    <div style="display:flex;gap:1rem;justify-content:center">
+      <button type="button" id="confirm-yes" class="btn">Sí</button>
+      <button type="button" id="confirm-no" class="btn btn-ghost">No</button>
+    </div>
+
+    {% elif ui_type == 'final_destination' %}
+    <input type="text" id="text-answer" class="input" placeholder="…">
+    <button type="button" id="text-submit" class="btn" style="margin-top:1rem">—</button>
+
+    {% else %}
+    {# Fallback genérico #}
+    {% if params.prompt %}<p class="narrative">·</p>{% endif %}
+    {% if params.options %}
+    <div class="level-grid">
+      {% for opt in params.options %}
+      <button type="button" class="panel option" data-choice-id="{{ opt.id }}">{{ opt.label }}</button>
+      {% endfor %}
+    </div>
+    {% else %}
+    <input type="text" id="text-answer" class="input" placeholder="…">
+    <button type="button" id="text-submit" class="btn" style="margin-top:1rem">—</button>
+    {% endif %}
+    {% endif %}
+  </form>
+
+  {% if success and next_level %}
+  <p style="margin-top:2rem;text-align:center">
+    <a href="{{ url_for('nivel', numero=next_level) }}" class="btn">—</a>
+  </p>
+  {% elif success and game_complete %}
+  <p style="margin-top:2rem;text-align:center">
+    <a href="{{ url_for('final') }}" class="btn">—</a>
+  </p>
+  {% endif %}
+</div>
+<script src="{{ url_for('static', filename='js/level.js') }}"></script>
+{% endblock %}

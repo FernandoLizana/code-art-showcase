@@ -1,0 +1,514 @@
+{% extends "base.html" %}
+
+
+
+{% block title %}Admin — PixelWall Ads{% endblock %}
+
+
+
+{% block content %}
+
+<section class="page-header">
+
+  <div class="container admin-header">
+
+    <div>
+
+      <h1 class="page-title">Panel Admin</h1>
+
+      <p class="page-desc">
+
+        Gestiona anuncios, suscripciones mensuales y ciclo de vida (vivo → moribundo → muerto).
+
+        Cuota: <strong>${{ monthly_price_per_cell }} CLP/celda/mes</strong> — {{ subscription_days }} días por renovación.
+
+      </p>
+
+    </div>
+
+    <a href="{{ url_for('admin_logout') }}" class="btn btn--ghost">Cerrar sesión</a>
+
+  </div>
+
+</section>
+
+
+
+<section class="admin-section">
+
+  <div class="container">
+
+
+
+  {% if dying_ads %}
+
+    <div class="admin-block admin-block--alert">
+
+      <h2 class="admin-block-title">
+
+        ⚠️ Moribundos (sin pago)
+
+        <span class="badge badge--warning">{{ dying_ads|length }}</span>
+
+      </h2>
+
+      <div class="admin-table-wrap">
+
+        <table class="admin-table">
+
+          <thead>
+
+            <tr>
+
+              <th>Anunciante</th>
+
+              <th>Email</th>
+
+              <th>Celdas</th>
+
+              <th>Cuota/mes</th>
+
+              <th>Venció</th>
+
+              <th>Acciones</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            {% for ad in dying_ads %}
+
+            <tr>
+
+              <td>{{ ad.advertiser_name }}</td>
+
+              <td><a href="mailto:{{ ad.email }}">{{ ad.email }}</a></td>
+
+              <td>{{ ad.cell_count }}</td>
+
+              <td>${{ "{:,}".format(ad.cell_count * monthly_price_per_cell) }}</td>
+
+              <td>{{ ad.paid_until.strftime('%d/%m/%Y') if ad.paid_until else '—' }}</td>
+
+              <td class="actions-cell">
+
+                <form action="{{ url_for('admin_renew', ad_id=ad.id) }}" method="POST" class="inline-form">
+
+                  <button type="submit" class="btn btn--sm btn--success">Renovar mes</button>
+
+                </form>
+
+                <form action="{{ url_for('admin_kill', ad_id=ad.id) }}" method="POST" class="inline-form"
+
+                      onsubmit="return confirm('¿Matar estos píxeles ahora?')">
+
+                  <button type="submit" class="btn btn--sm btn--danger">Matar</button>
+
+                </form>
+
+              </td>
+
+            </tr>
+
+            {% endfor %}
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  {% endif %}
+
+
+
+    <div class="admin-block">
+
+      <h2 class="admin-block-title">
+
+        Pendientes
+
+        <span class="badge">{{ pending_ads|length }}</span>
+
+      </h2>
+
+      {% if pending_ads %}
+
+        <div class="admin-table-wrap">
+
+          <table class="admin-table">
+
+            <thead>
+
+              <tr>
+
+                <th>ID</th>
+
+                <th>Anunciante</th>
+
+                <th>Título</th>
+
+                <th>Email</th>
+
+                <th>Posición</th>
+
+                <th>Celdas</th>
+
+                <th>Precio inicial</th>
+
+                <th>Cuota/mes</th>
+
+                <th>Acciones</th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              {% for ad in pending_ads %}
+
+              <tr>
+
+                <td>{{ ad.id }}</td>
+
+                <td>{{ ad.advertiser_name }}</td>
+
+                <td>{{ ad.title }}</td>
+
+                <td><a href="mailto:{{ ad.email }}">{{ ad.email }}</a></td>
+
+                <td>({{ ad.x }}, {{ ad.y }}) {{ ad.width }}×{{ ad.height }}</td>
+
+                <td>{{ ad.cell_count }}</td>
+
+                <td>${{ "{:,}".format(ad.total_price) }}</td>
+
+                <td>${{ "{:,}".format(ad.cell_count * monthly_price_per_cell) }}</td>
+
+                <td class="actions-cell">
+
+                  <form action="{{ url_for('admin_approve', ad_id=ad.id) }}" method="POST" class="inline-form">
+
+                    <button type="submit" class="btn btn--sm btn--success">Aprobar</button>
+
+                  </form>
+
+                  <form action="{{ url_for('admin_reject', ad_id=ad.id) }}" method="POST" class="inline-form">
+
+                    <button type="submit" class="btn btn--sm btn--warning">Rechazar</button>
+
+                  </form>
+
+                  <form action="{{ url_for('admin_delete', ad_id=ad.id) }}" method="POST" class="inline-form"
+
+                        onsubmit="return confirm('¿Eliminar?')">
+
+                    <button type="submit" class="btn btn--sm btn--danger">Eliminar</button>
+
+                  </form>
+
+                </td>
+
+              </tr>
+
+              {% endfor %}
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      {% else %}
+
+        <p class="empty-state">No hay anuncios pendientes.</p>
+
+      {% endif %}
+
+    </div>
+
+
+
+    <div class="admin-block">
+
+      <h2 class="admin-block-title">
+
+        Vivas (pagando)
+
+        <span class="badge badge--success">{{ paid_ads|length }}</span>
+
+      </h2>
+
+      {% if paid_ads %}
+
+        <div class="admin-table-wrap">
+
+          <table class="admin-table">
+
+            <thead>
+
+              <tr>
+
+                <th>Anunciante</th>
+
+                <th>Estado</th>
+
+                <th>Celdas</th>
+
+                <th>Cuota/mes</th>
+
+                <th>Pago hasta</th>
+
+                <th>Acciones</th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              {% for ad in paid_ads %}
+
+              <tr>
+
+                <td>{{ ad.advertiser_name }} — {{ ad.title }}</td>
+
+                <td><span class="life-badge life-badge--{{ ad.life_status }}">{{ ad.life_status }}</span></td>
+
+                <td>{{ ad.cell_count }}</td>
+
+                <td>${{ "{:,}".format(ad.cell_count * monthly_price_per_cell) }}</td>
+
+                <td>{{ ad.paid_until.strftime('%d/%m/%Y') if ad.paid_until else '—' }}</td>
+
+                <td class="actions-cell">
+
+                  <form action="{{ url_for('admin_renew', ad_id=ad.id) }}" method="POST" class="inline-form">
+
+                    <button type="submit" class="btn btn--sm btn--success">+1 mes</button>
+
+                  </form>
+
+                  <form action="{{ url_for('admin_kill', ad_id=ad.id) }}" method="POST" class="inline-form"
+
+                        onsubmit="return confirm('¿Matar píxeles?')">
+
+                    <button type="submit" class="btn btn--sm btn--danger">Matar</button>
+
+                  </form>
+
+                  <form action="{{ url_for('admin_delete', ad_id=ad.id) }}" method="POST" class="inline-form"
+
+                        onsubmit="return confirm('¿Eliminar?')">
+
+                    <button type="submit" class="btn btn--sm btn--ghost">Eliminar</button>
+
+                  </form>
+
+                </td>
+
+              </tr>
+
+              {% endfor %}
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      {% else %}
+
+        <p class="empty-state">No hay anuncios activos.</p>
+
+      {% endif %}
+
+    </div>
+
+
+
+    {% if dead_ads %}
+
+    <div class="admin-block">
+
+      <h2 class="admin-block-title">
+
+        💀 Muertos
+
+        <span class="badge">{{ dead_ads|length }}</span>
+
+      </h2>
+
+      <div class="admin-table-wrap">
+
+        <table class="admin-table">
+
+          <thead>
+
+            <tr>
+
+              <th>Anunciante</th>
+
+              <th>Título</th>
+
+              <th>Celdas</th>
+
+              <th>Acciones</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            {% for ad in dead_ads %}
+
+            <tr>
+
+              <td>{{ ad.advertiser_name }}</td>
+
+              <td>{{ ad.title }}</td>
+
+              <td>{{ ad.cell_count }}</td>
+
+              <td class="actions-cell">
+
+                <form action="{{ url_for('admin_revive', ad_id=ad.id) }}" method="POST" class="inline-form">
+
+                  <button type="submit" class="btn btn--sm btn--success">Revivir +1 mes</button>
+
+                </form>
+
+                <form action="{{ url_for('admin_delete', ad_id=ad.id) }}" method="POST" class="inline-form"
+
+                      onsubmit="return confirm('¿Eliminar tumba?')">
+
+                  <button type="submit" class="btn btn--sm btn--danger">Eliminar</button>
+
+                </form>
+
+              </td>
+
+            </tr>
+
+            {% endfor %}
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+    {% endif %}
+
+
+
+    {% if rejected_ads %}
+
+    <div class="admin-block">
+
+      <h2 class="admin-block-title">Rechazados <span class="badge badge--muted">{{ rejected_ads|length }}</span></h2>
+
+      <div class="admin-table-wrap">
+
+        <table class="admin-table">
+
+          <thead><tr><th>ID</th><th>Anunciante</th><th>Acciones</th></tr></thead>
+
+          <tbody>
+
+            {% for ad in rejected_ads %}
+
+            <tr>
+
+              <td>{{ ad.id }}</td>
+
+              <td>{{ ad.advertiser_name }}</td>
+
+              <td>
+
+                <form action="{{ url_for('admin_delete', ad_id=ad.id) }}" method="POST" class="inline-form">
+
+                  <button type="submit" class="btn btn--sm btn--danger">Eliminar</button>
+
+                </form>
+
+              </td>
+
+            </tr>
+
+            {% endfor %}
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+    {% endif %}
+
+
+
+    {% if replaced_ads %}
+
+    <div class="admin-block">
+
+      <h2 class="admin-block-title">Reemplazados <span class="badge badge--muted">{{ replaced_ads|length }}</span></h2>
+
+      <div class="admin-table-wrap">
+
+        <table class="admin-table">
+
+          <thead><tr><th>Anunciante</th><th>Título</th><th>Acciones</th></tr></thead>
+
+          <tbody>
+
+            {% for ad in replaced_ads %}
+
+            <tr>
+
+              <td>{{ ad.advertiser_name }}</td>
+
+              <td>{{ ad.title }}</td>
+
+              <td>
+
+                <form action="{{ url_for('admin_delete', ad_id=ad.id) }}" method="POST" class="inline-form">
+
+                  <button type="submit" class="btn btn--sm btn--danger">Eliminar</button>
+
+                </form>
+
+              </td>
+
+            </tr>
+
+            {% endfor %}
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+    {% endif %}
+
+
+
+  </div>
+
+</section>
+
+{% endblock %}
+

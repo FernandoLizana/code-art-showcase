@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}{{ ad.brand_name }}{% endblock %}
+
+{% block content %}
+<section class="detail-section">
+  <div class="container">
+    <div class="detail-card">
+      <div class="detail-header">
+        {% if ad.logo_path %}
+        <img src="{{ url_for('static', filename=ad.logo_path) }}" alt="{{ ad.brand_name }}" class="detail-logo">
+        {% else %}
+        <div class="detail-avatar" style="background: {{ ad.main_color }}; box-shadow: 0 0 30px {{ ad.main_color }}">
+          {{ ad.brand_name[0] }}
+        </div>
+        {% endif %}
+        <div class="detail-meta">
+          <span class="detail-type-badge">
+            {% if type_info.category_group == 'planet' %}🪐{% elif type_info.category_group == 'constellation' %}✨{% else %}⭐{% endif %}
+            {{ type_info.label }}
+          </span>
+          <h1>{{ ad.brand_name }}</h1>
+          <p class="detail-title">{{ ad.title }}</p>
+        </div>
+      </div>
+
+      <div class="detail-body">
+        <p class="detail-description">{{ ad.description }}</p>
+
+        <div class="detail-info-grid">
+          <div class="detail-info-item">
+            <span class="detail-info-label">Categoría</span>
+            <span>{{ ad.category }}</span>
+          </div>
+          <div class="detail-info-item">
+            <span class="detail-info-label">Se unió</span>
+            <span>{{ ad.created_at.strftime('%d/%m/%Y') }}</span>
+          </div>
+        </div>
+
+        <a href="{{ ad.target_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
+          Visitar marca →
+        </a>
+
+        <p class="detail-footer-text">Esta marca tiene su lugar en <strong>StarWall Ads</strong>.</p>
+      </div>
+    </div>
+
+    <div class="detail-back">
+      <a href="{{ url_for('index') }}#universo" class="btn btn-outline">← Volver al universo</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

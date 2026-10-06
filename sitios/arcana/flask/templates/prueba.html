@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="center">
+  <div style="width:100%;max-width:32rem;text-align:left">
+    <h2 class="narrative" style="font-size:1.4rem;margin:1.5rem 0">{{ question.text }}</h2>
+    <form method="post">
+      <input type="hidden" name="question_id" value="{{ question.id }}">
+      {% for opt in question.options %}
+      <button type="submit" name="option_index" value="{{ loop.index0 }}" class="panel option narrative">
+        {{ opt.text }}
+      </button>
+      {% endfor %}
+    </form>
+  </div>
+</div>
+{% endblock %}

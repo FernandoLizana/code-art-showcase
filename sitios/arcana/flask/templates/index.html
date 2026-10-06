@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="center fade-in">
+  <div style="max-width:28rem">
+    <p class="narrative">
+      Este archivo no fue construido para ti.<br>
+      <span style="color:var(--text-faint)">Sin embargo, ya respondió.</span>
+    </p>
+    <p style="margin-top:2rem">
+      <a href="{{ url_for('advertencia') }}" class="btn btn-ghost">Entrar</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

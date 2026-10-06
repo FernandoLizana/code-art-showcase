@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="center">
+  <div class="panel" style="text-align:left;max-width:40rem">
+    <p class="terminal" style="text-transform:uppercase;margin-bottom:1rem">Admin</p>
+    {% if not authed %}
+    <form method="post">
+      <input type="password" name="password" class="input" placeholder="Contraseña">
+      <button type="submit" class="btn" style="margin-top:0.75rem">Entrar</button>
+    </form>
+    {% if error %}<p class="msg-error" style="margin-top:1rem">{{ error }}</p>{% endif %}
+    {% else %}
+    <p class="terminal" style="font-size:0.65rem;color:var(--text-faint);margin-bottom:1rem">RUN_ID: <span style="color:var(--accent-gold)">{{ run_id }}</span></p>
+    <p class="narrative">Sesiones: {{ stats.sessions }}</p>
+    <p class="narrative">Completaron prueba: {{ stats.with_personality }}</p>
+    <p class="narrative">Abandonaron en prueba: {{ stats.dropout }}</p>
+    <p class="narrative">Completaron 100: {{ stats.completed_100 }}</p>
+    <p class="narrative">Intentos promedio: {{ stats.avg_attempts }}</p>
+
+    {% if stats.top_failed %}
+    <div style="margin-top:1.5rem">
+      <p class="terminal" style="font-size:0.65rem;margin-bottom:0.5rem">Umbrales con más fallos</p>
+      {% for t in stats.top_failed %}
+      <p class="narrative" style="margin:0.25rem 0">Nivel {{ t.level }} — {{ t.fails }} fallos</p>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div style="margin-top:2rem;border-top:1px solid var(--border-subtle);padding-top:1.5rem">
+      <p class="terminal" style="text-transform:uppercase;margin-bottom:1rem;font-size:0.65rem">IPs ({{ ip_list|length }})</p>
+      {% if ip_list %}
+      <table style="width:100%;font-family:'JetBrains Mono',monospace;font-size:0.65rem;border-collapse:collapse">
+        <thead>
+          <tr style="color:var(--text-faint);text-align:left">
+            <th>IP</th><th>Fecha</th><th>Prueba</th><th>100</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in ip_list %}
+          <tr style="border-top:1px solid var(--border-subtle)">
+            <td style="padding:0.4rem 0;color:var(--accent-gold)">{{ row.ip }}</td>
+            <td style="color:var(--text-muted)">{{ row.created_at[:16] }}</td>
+            <td>{{ '✓' if row.completed_test else '—' }}</td>
+            <td>{{ '✓' if row.finished_game else '—' }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

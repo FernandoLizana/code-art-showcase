@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block title %}StarWall Ads{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-badge">Universo 3D Interactivo</div>
+    <h1 class="hero-title">Compra tu lugar en el <span class="gradient-text">universo digital</span></h1>
+    <p class="hero-subtitle">Tu marca puede ser una estrella, un planeta o una constelación dentro de nuestra galaxia pública.</p>
+    <div class="hero-actions">
+      <a href="{{ url_for('buy') }}" class="btn btn-primary btn-lg">Comprar mi estrella</a>
+      <a href="#universo" class="btn btn-outline btn-lg">Ver universo</a>
+    </div>
+  </div>
+  <div class="hero-glow" aria-hidden="true"></div>
+</section>
+
+<!-- Contadores -->
+<section class="stats-section">
+  <div class="container stats-grid">
+    <div class="stat-card">
+      <span class="stat-number">{{ stats.stars_sold }}</span>
+      <span class="stat-label">Estrellas vendidas</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">{{ stats.planets_sold }}</span>
+      <span class="stat-label">Planetas vendidos</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">{{ stats.available }}</span>
+      <span class="stat-label">Espacios disponibles</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">{{ stats.founding_brands }}</span>
+      <span class="stat-label">Marcas fundadoras</span>
+    </div>
+  </div>
+</section>
+
+<!-- Universo interactivo -->
+<section class="universe-section" id="universo">
+  <div class="container">
+    <h2 class="section-title">Explora el <span class="gradient-text">universo</span></h2>
+    <p class="section-subtitle">Explora la galaxia en 3D — rota, acerca y haz clic en cualquier marca</p>
+
+    <!-- Filtros por categoría -->
+    <div class="filter-bar" id="categoryFilter">
+      <button class="filter-btn active" data-category="all">Todas</button>
+      {% for cat in categories %}
+      <button class="filter-btn" data-category="{{ cat }}">{{ cat }}</button>
+      {% endfor %}
+    </div>
+
+    <div class="universe-wrapper universe-wrapper--3d">
+      <div class="universe-controls-hint">
+        <span>🖱️ Arrastra para rotar</span>
+        <span>🔍 Scroll para zoom</span>
+        <span>✦ Clic en una marca</span>
+      </div>
+      <div class="universe-canvas universe-canvas--3d" id="universeCanvas"
+           data-width="1800" data-height="1000">
+      </div>
+      <div class="universe-hint">Universo 3D interactivo · Las marcas brillan en tiempo real</div>
+    </div>
+  </div>
+</section>
+
+<!-- Cómo funciona -->
+<section class="how-section" id="como-funciona">
+  <div class="container">
+    <h2 class="section-title">¿Cómo <span class="gradient-text">funciona</span>?</h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>Elige tu espacio</h3>
+        <p>Selecciona entre estrella, planeta o constelación según el tamaño de tu marca.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>Agrega tu marca y enlace</h3>
+        <p>Completa tu ficha con logo, descripción y el enlace a tu web o redes sociales.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>Aparece en el universo</h3>
+        <p>Una vez aprobado, tu marca brilla en la galaxia para que todos la descubran.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Precios -->
+<section class="pricing-section" id="precios">
+  <div class="container">
+    <h2 class="section-title">Elige tu <span class="gradient-text">espacio</span></h2>
+    <p class="section-subtitle">Precios en pesos chilenos (CLP)</p>
+    <div class="pricing-grid">
+      {% for key, info in space_types.items() %}
+      <div class="pricing-card {% if key == 'planet_large' %}featured{% endif %}">
+        {% if key == 'planet_large' %}<div class="pricing-badge">Popular</div>{% endif %}
+        <div class="pricing-icon">
+          {% if info.category_group == 'planet' %}🪐
+          {% elif info.category_group == 'constellation' %}✨
+          {% else %}⭐{% endif %}
+        </div>
+        <h3 class="pricing-name">{{ info.label }}</h3>
+        <div class="pricing-price">${{ "{:,}".format(info.price).replace(",", ".") }} <span>CLP</span></div>
+        <p class="pricing-desc">{{ info.description }}</p>
+        <p class="pricing-benefit">{{ info.benefit }}</p>
+        <a href="{{ url_for('buy', type=key) }}" class="btn {% if key == 'planet_large' %}btn-primary{% else %}btn-outline{% endif %} btn-block">Elegir</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Marcas recientes -->
+{% if recent %}
+<section class="recent-section">
+  <div class="container">
+    <h2 class="section-title">Marcas <span class="gradient-text">recientes</span></h2>
+    <div class="recent-grid">
+      {% for ad in recent %}
+      <a href="{{ url_for('space_detail', slug=ad.slug) }}" class="recent-card">
+        <div class="recent-color" style="background: {{ ad.main_color }}"></div>
+        <div class="recent-info">
+          <h4>{{ ad.brand_name }}</h4>
+          <span class="recent-cat">{{ ad.category }}</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- CTA final -->
+<section class="cta-section">
+  <div class="container cta-inner">
+    <h2>¿Listo para brillar en el universo?</h2>
+    <p>Únete a las marcas que ya tienen su lugar en la galaxia digital.</p>
+    <a href="{{ url_for('buy') }}" class="btn btn-primary btn-lg">Comprar mi estrella</a>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_head %}
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+  }
+}
+</script>
+{% endblock %}
+
+{% block extra_scripts %}
+<script type="module">
+  import { Universe } from "{{ url_for('static', filename='js/universe.js') }}";
+  document.addEventListener('DOMContentLoaded', () => {
+    Universe.init({ canvasId: 'universeCanvas', apiUrl: '/api/spaces', filterBarId: 'categoryFilter' });
+  });
+</script>
+{% endblock %}

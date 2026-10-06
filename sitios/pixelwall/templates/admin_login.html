@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Login — PixelWall Ads{% endblock %}
+
+{% block content %}
+<section class="login-section">
+  <div class="container">
+    <div class="login-card">
+      <h1 class="login-title">Acceso Admin</h1>
+      <p class="login-desc">Ingresa la contraseña de administración.</p>
+      <form method="POST" class="login-form">
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" name="password" required autofocus>
+        </div>
+        <button type="submit" class="btn btn--primary btn--full">Entrar</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

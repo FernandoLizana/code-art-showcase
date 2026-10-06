@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block title %}PixelWall Ads — Si no estás aquí, ya perdiste{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/hype.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="fomo-bar" id="fomo-bar">
+  <div class="fomo-bar__track">
+    <span>🔥 {{ alive_count }} marcas VIVAS en el muro</span>
+    <span>💀 {{ dead_count }} murieron por no pagar</span>
+    <span>⚠️ {{ dying_count }} muriendo ahora mismo</span>
+    <span>👀 Miles te están viendo sin logo</span>
+    <span>🔥 {{ alive_count }} marcas VIVAS en el muro</span>
+    <span>💀 {{ dead_count }} murieron por no pagar</span>
+  </div>
+</div>
+
+<section class="hero hero--savage">
+  <div class="container hero-inner">
+    <p class="hero-roast" id="hero-roast">¿Sigues sin píxeles? En serio?</p>
+    <h1 class="hero-title hero-title--savage">
+      Tu competencia ya compró internet.<br>
+      <span class="hero-title--accent">¿Y tú?</span>
+    </h1>
+    <p class="hero-subtitle hero-subtitle--savage">
+      Este muro es público. Cada visita sin tu logo es una burla gratuita.
+      Compra píxeles, paga la cuota mensual y no mueras de vergüenza digital.
+    </p>
+    <div class="hero-cta-row">
+      <a href="{{ url_for('buy') }}" class="btn btn--rage btn--lg">COMPRAR PÍXELES AHORA</a>
+      <span class="hero-cta-note">Desde ${{ grid_config.price_per_cell }} CLP/celda + plan mensual</span>
+    </div>
+  </div>
+  <div class="hero-glitch" aria-hidden="true">INVISIBLE</div>
+</section>
+
+<section class="shame-section" id="shame-section">
+  <div class="container">
+    <div class="shame-grid">
+      <div class="shame-card shame-card--them">
+        <h3>Ellos en el muro</h3>
+        <ul class="shame-list shame-list--winners">
+          {% for brand in recent_brands[:5] %}
+          <li>
+            <span class="shame-dot shame-dot--{{ brand.life_status }}"></span>
+            {{ brand.advertiser_name }}
+            {% if brand.life_status == 'muerto' %}<em>(murió)</em>{% elif brand.life_status == 'moribundo' %}<em>(agoniza)</em>{% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="shame-card shame-card--you">
+        <h3>Tú ahora mismo</h3>
+        <div class="shame-you" id="shame-you">
+          <span class="shame-ghost">👻</span>
+          <p class="shame-you-text">Sin un solo píxel.<br>Invisible. Olvidable. <strong>Reemplazable.</strong></p>
+        </div>
+        <a href="{{ url_for('buy') }}" class="btn btn--rage btn--full">Dejar de ser nadie</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats-section stats-section--pulse">
+  <div class="container stats-grid">
+    <div class="stat-card stat-card--alive">
+      <span class="stat-value">{{ grid_stats.alive_brands }}</span>
+      <span class="stat-label">Marcas vivas</span>
+    </div>
+    <div class="stat-card stat-card--dying">
+      <span class="stat-value">{{ grid_stats.dying_brands }}</span>
+      <span class="stat-label">Muriendo</span>
+    </div>
+    <div class="stat-card stat-card--dead">
+      <span class="stat-value">{{ grid_stats.dead_brands }}</span>
+      <span class="stat-label">Muertas (no pagaron)</span>
+    </div>
+    <div class="stat-card stat-card--price">
+      <span class="stat-value">${{ grid_config.monthly_price_per_cell }}</span>
+      <span class="stat-label">CLP/celda al mes</span>
+    </div>
+  </div>
+</section>
+
+<section class="grid-section">
+  <div class="container">
+    <h2 class="section-title section-title--savage">El muro no perdona</h2>
+    <p class="section-desc">
+      <span class="legend-dot legend-dot--vivo"></span> Vivos &nbsp;
+      <span class="legend-dot legend-dot--moribundo"></span> Muriendo &nbsp;
+      <span class="legend-dot legend-dot--muerto"></span> Muertos — clic solo en vivos.
+    </p>
+    <div class="grid-wrapper grid-wrapper--hero">
+      <div id="public-grid"
+           class="pixel-grid pixel-grid--public"
+           data-mode="public"
+           data-grid-width="{{ grid_config.grid_width }}"
+           data-grid-height="{{ grid_config.grid_height }}"
+           data-cell-size="{{ grid_config.cell_size }}">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="death-warning">
+  <div class="container death-warning-inner">
+    <h2>Plan mensual o <span class="text-dead">muerte digital</span></h2>
+    <p>
+      Pagas una vez, apareces {{ grid_config.subscription_days }} días.
+      Si no renuevas la cuota mensual, tus píxeles empiezan a <strong>morir</strong>:
+      agonizan {{ grid_config.grace_period_days }} días de gracia, luego quedan como tumba gris en el muro.
+      Tu competencia se ríe. Nosotros también un poquito.
+    </p>
+    <div class="death-steps">
+      <div class="death-step"><span>01</span> Vivo — brillando</div>
+      <div class="death-step death-step--dying"><span>02</span> Moribundo — sin pago</div>
+      <div class="death-step death-step--dead"><span>03</span> Muerto — epitafio público</div>
+    </div>
+    <a href="{{ url_for('buy') }}" class="btn btn--rage btn--lg">Quiero vivir en el muro</a>
+  </div>
+</section>
+
+<section class="roast-section">
+  <div class="container">
+    <h2 class="section-title section-title--savage">Preguntas incómodas</h2>
+    <div class="roast-accordion">
+      <details class="roast-item" open>
+        <summary>¿Por qué no tengo píxeles todavía?</summary>
+        <p>Porque alguien más con menos miedo ya los compró. O porque sigues "pensándolo". Mientras tanto, tu marca no existe aquí.</p>
+      </details>
+      <details class="roast-item">
+        <summary>¿Puedo reemplazar a otro anunciante?</summary>
+        <p>Sí. Pagas más si el píxel ya fue vendido antes. La internet no es democrática: es subasta con actitud.</p>
+      </details>
+      <details class="roast-item">
+        <summary>¿Qué pasa si no pago el mes?</summary>
+        <p>Tus píxeles mueren. Literal. Quedan en el muro como advertencia para otros indecisos. Brutal, pero justo.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<div class="sticky-cta" id="sticky-cta">
+  <p>¿Aún sin píxeles? <strong>Patético.</strong></p>
+  <a href="{{ url_for('buy') }}" class="btn btn--rage btn--sm">Comprar ya</a>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  window.PIXELWALL_CONFIG = {{ grid_config | tojson }};
+  window.PIXELWALL_ADS = {{ ads_json | tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/grid.js') }}"></script>
+<script src="{{ url_for('static', filename='js/hype.js') }}"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    PixelGrid.initPublic('#public-grid', window.PIXELWALL_ADS);
+    HypePage.init();
+  });
+</script>
+{% endblock %}

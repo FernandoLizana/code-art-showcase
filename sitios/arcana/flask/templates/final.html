@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="center fade-in">
+  <div style="max-width:28rem">
+    <p class="narrative" style="font-size:1.3rem">Fin.</p>
+    <p class="terminal" style="margin:1.5rem 0;color:var(--text-faint)">{{ destination_label }}</p>
+    <a href="{{ url_for('certificado') }}" class="btn" style="margin-top:2rem">—</a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}StarWall Ads{% endblock %} — Compra tu lugar en el universo digital</title>
+  <meta name="description" content="Tu marca puede ser una estrella, un planeta o una constelación dentro de nuestra galaxia pública.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  <!-- Fondo de estrellas animadas -->
+  <div class="stars-bg" aria-hidden="true"></div>
+
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="{{ url_for('index') }}" class="logo">
+        <span class="logo-icon">✦</span>
+        <span class="logo-text">StarWall <span class="logo-accent">Ads</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="{{ url_for('index') }}#universo">Universo</a></li>
+        <li><a href="{{ url_for('index') }}#precios">Precios</a></li>
+        <li><a href="{{ url_for('index') }}#como-funciona">Cómo funciona</a></li>
+        <li><a href="{{ url_for('buy') }}" class="btn btn-primary btn-sm">Comprar mi estrella</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-icon">✦</span>
+        <span>StarWall Ads</span>
+      </div>
+      <p class="footer-tagline">Compra tu lugar en el universo digital</p>
+      <p class="footer-copy">&copy; 2026 StarWall Ads. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Modal global para fichas de marca -->
+  <div class="modal-overlay" id="spaceModal" role="dialog" aria-modal="true" aria-labelledby="modalBrandName" hidden>
+    <div class="modal">
+      <button class="modal-close" id="modalClose" aria-label="Cerrar">&times;</button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>

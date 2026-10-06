@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+
+{% block title %}Admin{% endblock %}
+
+{% block content %}
+<section class="admin-section">
+  <div class="container">
+    {% if not logged_in %}
+    <!-- Login -->
+    <div class="admin-login">
+      <h1 class="section-title">Panel <span class="gradient-text">Admin</span></h1>
+      {% if error %}
+      <div class="form-alert error">{{ error }}</div>
+      {% endif %}
+      <form method="POST" class="admin-login-form">
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" name="password" required autofocus>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+      </form>
+    </div>
+
+    {% else %}
+    <!-- Panel -->
+    <div class="admin-header">
+      <h1 class="section-title">Panel <span class="gradient-text">Admin</span></h1>
+      <a href="{{ url_for('admin_logout') }}" class="btn btn-outline btn-sm">Cerrar sesión</a>
+    </div>
+
+    <!-- Pendientes -->
+    <div class="admin-block">
+      <h2 class="admin-block-title">
+        Pendientes
+        <span class="badge badge-pending">{{ pending|length }}</span>
+      </h2>
+      {% if pending %}
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Marca</th>
+              <th>Email</th>
+              <th>Tipo</th>
+              <th>Precio</th>
+              <th>URL</th>
+              <th>Fecha</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ad in pending %}
+            <tr id="row-{{ ad.id }}">
+              <td><strong>{{ ad.brand_name }}</strong><br><small>{{ ad.advertiser_name }}</small></td>
+              <td>{{ ad.email }}</td>
+              <td>{{ space_types[ad.space_type].label }}</td>
+              <td>${{ "{:,}".format(ad.price).replace(",", ".") }}</td>
+              <td><a href="{{ ad.target_url }}" target="_blank" rel="noopener">{{ ad.target_url[:40] }}…</a></td>
+              <td>{{ ad.created_at.strftime('%d/%m/%Y') }}</td>
+              <td class="admin-actions">
+                <button class="btn btn-success btn-sm" onclick="adminAction({{ ad.id }}, 'approve')">Aprobar</button>
+                <button class="btn btn-warning btn-sm" onclick="adminAction({{ ad.id }}, 'reject')">Rechazar</button>
+                <button class="btn btn-danger btn-sm" onclick="adminAction({{ ad.id }}, 'delete')">Eliminar</button>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <p class="admin-empty">No hay anuncios pendientes.</p>
+      {% endif %}
+    </div>
+
+    <!-- Pagados -->
+    <div class="admin-block">
+      <h2 class="admin-block-title">
+        Pagados
+        <span class="badge badge-paid">{{ paid|length }}</span>
+      </h2>
+      {% if paid %}
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Marca</th>
+              <th>Email</th>
+              <th>Tipo</th>
+              <th>Precio</th>
+              <th>URL</th>
+              <th>Fecha</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ad in paid %}
+            <tr id="row-{{ ad.id }}">
+              <td><strong>{{ ad.brand_name }}</strong></td>
+              <td>{{ ad.email }}</td>
+              <td>{{ space_types[ad.space_type].label }}</td>
+              <td>${{ "{:,}".format(ad.price).replace(",", ".") }}</td>
+              <td><a href="{{ ad.target_url }}" target="_blank" rel="noopener">{{ ad.target_url[:40] }}…</a></td>
+              <td>{{ ad.created_at.strftime('%d/%m/%Y') }}</td>
+              <td class="admin-actions">
+                <button class="btn btn-danger btn-sm" onclick="adminAction({{ ad.id }}, 'delete')">Eliminar</button>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <p class="admin-empty">No hay anuncios pagados.</p>
+      {% endif %}
+    </div>
+
+    <!-- Rechazados -->
+    <div class="admin-block">
+      <h2 class="admin-block-title">
+        Rechazados
+        <span class="badge badge-rejected">{{ rejected|length }}</span>
+      </h2>
+      {% if rejected %}
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Marca</th>
+              <th>Email</th>
+              <th>Tipo</th>
+              <th>Precio</th>
+              <th>Fecha</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ad in rejected %}
+            <tr id="row-{{ ad.id }}">
+              <td><strong>{{ ad.brand_name }}</strong></td>
+              <td>{{ ad.email }}</td>
+              <td>{{ space_types[ad.space_type].label }}</td>
+              <td>${{ "{:,}".format(ad.price).replace(",", ".") }}</td>
+              <td>{{ ad.created_at.strftime('%d/%m/%Y') }}</td>
+              <td class="admin-actions">
+                <button class="btn btn-danger btn-sm" onclick="adminAction({{ ad.id }}, 'delete')">Eliminar</button>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <p class="admin-empty">No hay anuncios rechazados.</p>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+{% if logged_in %}
+<script>
+async function adminAction(id, action) {
+  const labels = { approve: 'aprobar', reject: 'rechazar', delete: 'eliminar' };
+  if (!confirm(`¿Confirmas ${labels[action]} este anuncio?`)) return;
+
+  const res = await fetch(`/admin/spaces/${id}/${action}`, { method: 'POST' });
+  const data = await res.json();
+
+  if (res.ok) {
+    const row = document.getElementById(`row-${id}`);
+    if (row) row.remove();
+    if (action !== 'delete') setTimeout(() => location.reload(), 500);
+  } else {
+    alert(data.error || 'Error al procesar la acción.');
+  }
+}
+</script>
+{% endif %}
+{% endblock %}
