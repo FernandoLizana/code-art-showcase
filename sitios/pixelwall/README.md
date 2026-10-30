@@ -51,10 +51,10 @@ La app estará disponible en **http://localhost:5000**
 | GET | `/` | Página principal con grilla pública |
 | GET | `/buy` | Comprar / reservar píxeles (permite reemplazo con precio escalonado) |
 | POST | `/ads` | Crear anuncio (estado pendiente) |
-| GET | `/***REMOVED***` | Panel admin oculto (configurable con `ADMIN_PATH`) |
-| POST | `/***REMOVED***/ads/<id>/approve` | Aprobar anuncio |
-| POST | `/***REMOVED***/ads/<id>/reject` | Rechazar anuncio |
-| POST | `/***REMOVED***/ads/<id>/delete` | Eliminar anuncio |
+| GET | `/<ADMIN_PATH>` | Panel admin (ruta definida con `ADMIN_PATH`) |
+| POST | `/<ADMIN_PATH>/ads/<id>/approve` | Aprobar anuncio |
+| POST | `/<ADMIN_PATH>/ads/<id>/reject` | Rechazar anuncio |
+| POST | `/<ADMIN_PATH>/ads/<id>/delete` | Eliminar anuncio |
 | GET | `/api/ads` | API JSON de anuncios |
 | POST | `/api/validate-selection` | Validar selección de grilla |
 
@@ -71,13 +71,15 @@ PRICE_PER_CELL = 100  # Precio en CLP por celda
 
 Variables de entorno (`.env`):
 
-| Variable | Descripción | Default |
-|----------|-------------|---------|
-| `SECRET_KEY` | Clave de sesión Flask | `dev-secret-change-in-production` |
-| `ADMIN_PASSWORD` | Contraseña del panel admin | `***REMOVED***` |
-| `ADMIN_PATH` | Ruta oculta del panel (sin link público) | `***REMOVED***` |
+| Variable | Descripción | Si falta |
+|----------|-------------|----------|
+| `SECRET_KEY` | Clave de sesión Flask | Aleatoria en cada inicio |
+| `ADMIN_PASSWORD` | Contraseña del panel admin | Aleatoria, se muestra una vez en la consola |
+| `ADMIN_PATH` | Ruta del panel (sin link público) | Aleatoria, se muestra una vez en la consola |
 | `SEED_DATA` | Cargar datos de ejemplo (`1`/`0`) | `1` |
 | `FLASK_DEBUG` | Modo debug | `1` |
+
+Configura la ruta y la contraseña de administración con variables de entorno (ver `.env.example`). El código no trae valores por defecto conocidos.
 
 ## Probar el flujo completo
 
@@ -85,7 +87,7 @@ Variables de entorno (`.env`):
 2. Ve a **Comprar píxeles** (`/buy`).
 3. Haz clic en una celda libre y arrastra para formar un rectángulo.
 4. Completa el formulario y pulsa **Reservar espacio**.
-5. Entra al panel oculto en **http://localhost:5000/***REMOVED***** con contraseña `***REMOVED***`.
+5. Entra al panel admin en la ruta que definiste en `ADMIN_PATH`, con la contraseña de `ADMIN_PASSWORD` (si no las definiste, la consola muestra las generadas al iniciar).
 6. Aprueba el anuncio — si reemplaza píxeles existentes, el anterior pasa a "reemplazado".
 7. Volver a **/** — El nuevo anuncio aparece en el muro.
 

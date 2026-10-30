@@ -1,11 +1,31 @@
 """Configuración central de StarWall Ads."""
 import os
+import secrets
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
+
+def _from_env_or_random(name, nbytes=16):
+    """Lee una variable de entorno; si falta, genera un valor aleatorio.
+
+    El valor generado se guarda en os.environ para que el proceso hijo del
+    recargador de Flask herede el mismo.
+    """
+    value = os.environ.get(name)
+    if value:
+        return value
+    value = secrets.token_urlsafe(nbytes)
+    os.environ[name] = value
+    return value
+
+
 # ── App ──────────────────────────────────────────────────────────────────────
-SECRET_KEY = os.environ.get("SECRET_KEY", "starwall-dev-secret-change-in-prod")
-ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "***REMOVED***")
+SECRET_KEY = _from_env_or_random("SECRET_KEY", 32)
+_ADMIN_PASSWORD_GENERATED = not os.environ.get("ADMIN_PASSWORD")
+ADMIN_PASSWORD = _from_env_or_random("ADMIN_PASSWORD")
+if _ADMIN_PASSWORD_GENERATED:
+    print("Aviso: falta ADMIN_PASSWORD en el entorno (ver .env.example).")
+    print(f"  Contraseña admin generada solo para esta ejecución: {ADMIN_PASSWORD}")
 DATABASE_URI = os.environ.get("DATABASE_URI", f"sqlite:///{os.path.join(BASE_DIR, 'starwall.db')}")
 
 # ── Uploads ──────────────────────────────────────────────────────────────────

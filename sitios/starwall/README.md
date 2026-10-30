@@ -40,4 +40,4 @@ La base `starwall.db` se crea al iniciar y no forma parte del repositorio. Las m
 | POST | `/admin/spaces/<id>/reject` | Rechazar |
 | POST | `/admin/spaces/<id>/delete` | Eliminar |
 
-Define `SECRET_KEY` y `ADMIN_PASSWORD` en `.env`. El código trae un valor de desarrollo solo para probar en local.
+Define `SECRET_KEY` y `ADMIN_PASSWORD` en el entorno (ver `.env.example`). El código no trae una contraseña por defecto: si falta, genera una aleatoria al iniciar y la muestra una vez en la consola.

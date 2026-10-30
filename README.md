@@ -37,7 +37,7 @@ flowchart LR
 
 Incluye la portada y el código fuente de las tres piezas: plantillas, estilos, lógica y archivos de ejemplo para configurarlas en local.
 
-No incluye dependencias descargables (`node_modules`, `venv`), bases de datos, archivos `.env` ni pagos reales. Las marcas de ejemplo son ficticias. Las contraseñas que aparecen como valor por defecto sirven solo para probar el panel en tu máquina: hay que cambiarlas antes de publicar un servidor.
+No incluye dependencias descargables (`node_modules`, `venv`), bases de datos, archivos `.env` ni pagos reales. Las marcas de ejemplo son ficticias. El código no trae contraseñas ni rutas de administración por defecto: se configuran con variables de entorno (ver `.env.example` de cada pieza).
 
 ## Instalación portable
 
@@ -269,7 +269,7 @@ Queda en [http://127.0.0.1:5000](http://127.0.0.1:5000). Si PixelWall ya usa ese
 | GET, POST | `/api/spaces` | Listar o crear un lugar |
 | GET, POST | `/admin` | Panel local |
 
-`SECRET_KEY` y `ADMIN_PASSWORD` salen del entorno. Si no existen, el código usa un valor de desarrollo. No hay token de pago en el repositorio: Mercado Pago está comentado en `config.py`.
+`SECRET_KEY` y `ADMIN_PASSWORD` salen del entorno. Si no existen, el código genera valores aleatorios al iniciar y muestra la contraseña una vez en la consola. No hay token de pago en el repositorio: Mercado Pago está comentado en `config.py`.
 
 ### yosoy
 
