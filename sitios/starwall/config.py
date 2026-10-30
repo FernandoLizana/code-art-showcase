@@ -85,7 +85,6 @@ CATEGORIES = [
     "Tecnología",
     "Educación",
     "Salud y bienestar",
-    "Tarot y espiritualidad",
     "Servicios locales",
     "Tiendas online",
     "Profesionales",

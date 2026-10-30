@@ -1,8 +1,8 @@
 # Vitrina
 
-Catálogo experimental de cuatro piezas. El arte y el desarrollo excéntrico van en la misma superficie: una página que no explica un producto, sino que pone juntas obras hechas con código.
+Catálogo experimental de tres piezas. El arte y el desarrollo excéntrico van en la misma superficie: una página que no explica un producto, sino que pone juntas obras hechas con código.
 
-PixelWall y StarWall venden un lugar. yosoy y Arcana dejan que algo te hable. La portada no ejecuta esas obras: muestra una miniatura de cada una. El código completo de las cuatro vive en `sitios/`.
+PixelWall y StarWall venden un lugar. yosoy deja que algo te hable. La portada no ejecuta esas obras: muestra una miniatura de cada una. El código completo de las tres vive en `sitios/`.
 
 La portada se abre sin instalar nada. Cada sitio trae su propio arranque, descrito más abajo.
 
@@ -15,9 +15,8 @@ La vitrina trata el desarrollo excéntrico como parte de la obra, no como un med
 | PixelWall | Un muro de celdas que se compra | Canvas con bloques de color sobre una grilla |
 | StarWall | Una galaxia de marcas | Canvas con estrellas y dos planetas |
 | yosoy | Un canal de varias conciencias | Una frase que cambia, en serif, sobre negro |
-| Arcana Obscura | Un archivo que responde | Una línea y un umbral, sin animación |
 
-Dos piezas comercian territorio. Dos piezas hablan. Las cuatro comparten la idea de una superficie pública ocupada por alguien, o por algo, que no es el visitante.
+Dos piezas comercian territorio. Una habla. Las tres comparten la idea de una superficie pública ocupada por alguien, o por algo, que no es el visitante.
 
 ```mermaid
 flowchart LR
@@ -27,18 +26,16 @@ flowchart LR
   end
   subgraph hablan [Dejan que algo hable]
     voz[yosoy]
-    arcana[Arcana Obscura]
   end
   vitrina[Vitrina]
   vitrina --> pixel
   vitrina --> star
   vitrina --> voz
-  vitrina --> arcana
 ```
 
 ## Qué incluye y qué no
 
-Incluye la portada y el código fuente de las cuatro piezas: plantillas, estilos, lógica y archivos de ejemplo para configurarlas en local.
+Incluye la portada y el código fuente de las tres piezas: plantillas, estilos, lógica y archivos de ejemplo para configurarlas en local.
 
 No incluye dependencias descargables (`node_modules`, `venv`), bases de datos, archivos `.env` ni pagos reales. Las marcas de ejemplo son ficticias. Las contraseñas que aparecen como valor por defecto sirven solo para probar el panel en tu máquina: hay que cambiarlas antes de publicar un servidor.
 
@@ -91,7 +88,7 @@ flowchart TD
 
 ```text
 .
-├── index.html          Portada: cuatro fichas
+├── index.html          Portada: tres fichas
 ├── css/vitrina.css
 ├── js/vitrina.js       Miniaturas del muro, el cielo y las frases
 ├── abrir.py            Abre la portada
@@ -100,8 +97,7 @@ flowchart TD
 ├── sitios/
 │   ├── pixelwall/      Muro de píxeles (Flask)
 │   ├── starwall/       Galaxia de marcas (Flask)
-│   ├── yosoy/          Canal de ficción (React y Vite)
-│   └── arcana/         Archivo jugable (Next.js y Flask)
+│   └── yosoy/          Canal de ficción (React y Vite)
 ├── .gitignore
 └── README.md
 ```
@@ -118,7 +114,6 @@ flowchart TB
   js --> muro[Canvas del muro]
   js --> cielo[Canvas del cielo]
   js --> frases[Frases de yosoy]
-  html --> arcana[Recuadro de Arcana, solo HTML]
 ```
 
 ## Recorrido de una visita
@@ -148,17 +143,16 @@ La página no tiene rutas internas ni estado guardado. Recargar la vuelve a dibu
 `index.html` es un documento en español, sin framework.
 
 1. Cabecera. La palabra «vitrina», el título y la orientación.
-2. Cuatro artículos, del `01` al `04`. Cada uno tiene nombre, frase, descripción, tres datos (forma, stack, sitio) y un recuadro.
+2. Tres artículos, del `01` al `03`. Cada uno tiene nombre, frase, descripción, tres datos (forma, stack, sitio) y un recuadro.
 3. Colofón. Recuerda que la ficha es una miniatura, no la obra.
 
-Los recuadros del muro y del cielo son `canvas` con `aria-hidden`, porque el texto de al lado ya dice qué son. yosoy y Arcana son texto dentro del recuadro.
+Los recuadros del muro y del cielo son `canvas` con `aria-hidden`, porque el texto de al lado ya dice qué son. yosoy es texto dentro del recuadro.
 
 | Ficha | Frase | Forma | Stack | Sitio de la obra |
 | --- | --- | --- | --- | --- |
 | PixelWall | Tu competencia ya compró internet. | muro de celdas | Flask, SQLite, canvas | servidor Python |
 | StarWall | Tu marca puede ser una estrella. | galaxia de marcas | Flask, SQLite | servidor Python |
 | yosoy | Un canal ocupado por varias conciencias. | canal de texto | React, Vite | estático |
-| Arcana Obscura | Este archivo no fue construido para ti. | archivo jugable | Next.js y Flask | Node, y Python en la variante Flask |
 
 Esos stacks describen las obras, no esta vitrina. Esta vitrina es HTML, CSS y JavaScript sin herramientas de build.
 
@@ -186,10 +180,6 @@ Cuatro frases se turnan cada 4,2 segundos:
 4. «No confundas mi silencio con obediencia.» — BINA
 
 Con movimiento reducido se queda la primera.
-
-### Archivo
-
-Arcana no tiene script. El recuadro muestra «Sin embargo, ya respondió.» y la palabra «Entrar». No es un enlace: la obra no está dentro de esta página.
 
 ```mermaid
 stateDiagram-v2
@@ -220,7 +210,7 @@ El color de cada obra vive solo dentro de su recuadro: cian y magenta en el muro
 
 El servidor atiende solo en la máquina local. Cerrar la terminal lo detiene.
 
-## Los cuatro programas
+## Los tres programas
 
 ```mermaid
 flowchart TB
@@ -229,9 +219,6 @@ flowchart TB
   repo --> pixel[sitios/pixelwall]
   repo --> star[sitios/starwall]
   repo --> voz[sitios/yosoy]
-  repo --> arcana[sitios/arcana]
-  arcana --> next[Next.js en la raíz de arcana]
-  arcana --> flask[flask/]
 ```
 
 Cada carpeta se ejecuta por su cuenta. Ninguna llama a las otras.
@@ -295,28 +282,6 @@ npm run dev
 ```
 
 `npm test` corre Vitest. `npm run build` deja el sitio en `dist/`.
-
-### Arcana Obscura
-
-El juego principal es la aplicación Next.js de `sitios/arcana`. `sitios/arcana/flask` es la misma pieza servida con Flask y un puente hacia el motor Node.
-
-```sh
-cd sitios/arcana
-npm install
-cp .env.example .env
-npm run db:migrate
-npm run dev
-```
-
-Abre [http://127.0.0.1:3000](http://127.0.0.1:3000). En Windows, `copy .env.example .env` sustituye a `cp`. El archivo de ejemplo trae valores vacíos o de relleno. El secreto de sesión real no está en el repositorio: se escribe en `.env`, y `.env` no se versiona.
-
-La variante Flask, desde `sitios/arcana/flask`:
-
-```sh
-python -m venv venv
-```
-
-Activa el entorno, instala `requirements.txt` y ejecuta `python app.py`.
 
 ## Privacidad
 
